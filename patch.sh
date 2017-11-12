@@ -102,10 +102,28 @@ local_patch () {
 	echo "dir: dir"
 	${git} "${DIR}/patches/dir/0001-patch.patch"
 }
+mvebu64 () {
+	echo "dir: dir"
+	${git} "${DIR}/patches/mvebu64/0001-ARM64-dts-marvell-armada37xx-Enable-memory-mapped-GI.patch"
+	${git} "${DIR}/patches/mvebu64/0002-ARM64-dts-marvell-armada37xx-Wire-PMUv3.patch"
+	${git} "${DIR}/patches/mvebu64/0003-ARM64-dts-marvell-armada37xx-Enable-USB2-on-espresso.patch"
+	${git} "${DIR}/patches/mvebu64/0004-ARM64-dts-marvell-armada-37xx-Enable-uSD-on-ESPRESSO.patch"
+	${git} "${DIR}/patches/mvebu64/0005-PCI-aardvark-fix-logic-in-PCI-configuration-read-wri.patch"
+	${git} "${DIR}/patches/mvebu64/0006-arm64-dts-marvell-armada37xx-Add-eth0-alias.patch"
+	${git} "${DIR}/patches/mvebu64/0007-PCI-aardvark-set-PIO_ADDR_LS-correctly-in-advk_pcie_.patch"
+	${git} "${DIR}/patches/mvebu64/0008-fix-pci-aardvark-disable-LOS-state-by-default.patch"
+	${git} "${DIR}/patches/mvebu64/0009-PCI-aardvark-set-host-and-device-to-the-same-MAX-pay.patch"
+	${git} "${DIR}/patches/mvebu64/0010-fix-pci-aardvark-use-isr1-interrupt-in-legacy-irq-mo.patch"
+	${git} "${DIR}/patches/mvebu64/0011-Armbian-add_8812au_8821au_with_monitor_mode_and_fram.patch"
+	${git} "${DIR}/patches/mvebu64/0012-Armbian-add_8814au_with_monitor_mode_and_frame_injec.patch"
+	${git} "${DIR}/patches/mvebu64/0013-Armbian-arm64_increasing_DMA_block_memory_allocation.patch"
+	${git} "${DIR}/patches/mvebu64/0014-Armbian-set-default-target-to-Image.patch"
+}
 
 #external_git
 #rt
 #local_patch
+mvebu64
 
 packaging () {
 	echo "dir: packaging"
@@ -120,5 +138,5 @@ packaging () {
 	fi
 }
 
-packaging
+#packaging
 echo "patch.sh ran successfully"
