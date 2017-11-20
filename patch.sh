@@ -118,6 +118,7 @@ mvebu64 () {
 	${git} "${DIR}/patches/mvebu64/0012-Armbian-add_8814au_with_monitor_mode_and_frame_injec.patch"
 	${git} "${DIR}/patches/mvebu64/0013-Armbian-arm64_increasing_DMA_block_memory_allocation.patch"
 	${git} "${DIR}/patches/mvebu64/0014-Armbian-set-default-target-to-Image.patch"
+	${git} "${DIR}/patches/mvebu64/0015-ARM64-VDSO-fix-makefile-with-gold-linker-as-default.patch"
 }
 
 #external_git
