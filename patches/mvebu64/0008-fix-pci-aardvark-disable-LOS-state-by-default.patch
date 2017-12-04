@@ -1,7 +1,7 @@
-From 52379b49d90411385ae548d6d4304bf6722dc184 Mon Sep 17 00:00:00 2001
+From c1d0aadc4440c07d2e940c83c1b6e5d9d694a3a5 Mon Sep 17 00:00:00 2001
 From: Victor Gu <xigu@marvell.com>
 Date: Wed, 29 Mar 2017 15:17:03 +0800
-Subject: [PATCH 08/14] fix: pci: aardvark: disable LOS state by default
+Subject: [PATCH 08/11] fix: pci: aardvark: disable LOS state by default
 
 Some PCIe devices do not support LOS, there will be time out issue
 if the RC forces the LOS state.
@@ -17,7 +17,7 @@ Reviewed-by: Evan Wang <xswang@marvell.com>
  1 file changed, 1 insertion(+), 2 deletions(-)
 
 diff --git a/drivers/pci/host/pci-aardvark.c b/drivers/pci/host/pci-aardvark.c
-index fe94d064483b..b43351a6b6ce 100644
+index 37d0bcd31f8a..072bc70e900c 100644
 --- a/drivers/pci/host/pci-aardvark.c
 +++ b/drivers/pci/host/pci-aardvark.c
 @@ -365,8 +365,7 @@ static void advk_pcie_setup_hw(struct advk_pcie *pcie)
@@ -31,5 +31,5 @@ index fe94d064483b..b43351a6b6ce 100644
  
  	reg = advk_readl(pcie, PCIE_CORE_CMD_STATUS_REG);
 -- 
-2.15.0
+2.13.3
 
