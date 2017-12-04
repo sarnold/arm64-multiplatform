@@ -95,7 +95,7 @@ index 072bc70e900c..10154dcf219b 100644
 -		advk_writel(pcie, PCIE_ISR0_INTX_ASSERT(i),
 -			    PCIE_ISR0_REG);
 +		advk_writel(pcie, PCIE_ISR1_INTX_ASSERT(i),
-+			    PCIE_ISR1_REG); 
++			    PCIE_ISR1_REG);
  
  		virq = irq_find_mapping(pcie->irq_domain, i);
  		generic_handle_irq(virq);

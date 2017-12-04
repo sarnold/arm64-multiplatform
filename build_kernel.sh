@@ -133,9 +133,6 @@ make_pkg () {
 	modules)
 		make -s ARCH=${KERNEL_ARCH} LOCALVERSION=${BUILD} CROSS_COMPILE="${CC}" modules_install INSTALL_MOD_PATH="${DIR}/deploy/tmp"
 		;;
-	firmware)
-		make -s ARCH=${KERNEL_ARCH} LOCALVERSION=${BUILD} CROSS_COMPILE="${CC}" firmware_install INSTALL_FW_PATH="${DIR}/deploy/tmp"
-		;;
 	dtbs)
 		if grep -q dtbs_install "${DIR}/KERNEL/arch/${KERNEL_ARCH}/Makefile"; then
 			make -s ARCH=${KERNEL_ARCH} LOCALVERSION=${BUILD} CROSS_COMPILE="${CC}" dtbs_install INSTALL_DTBS_PATH="${DIR}/deploy/tmp"
@@ -162,11 +159,6 @@ make_pkg () {
 
 make_modules_pkg () {
 	pkg="modules"
-	make_pkg
-}
-
-make_firmware_pkg () {
-	pkg="firmware"
 	make_pkg
 }
 
@@ -249,7 +241,6 @@ if [  -f "${DIR}/.yakbuild" ] ; then
 fi
 make_kernel
 make_modules_pkg
-make_firmware_pkg
 if grep -q dtbs "${DIR}/KERNEL/arch/${KERNEL_ARCH}/Makefile"; then
 	make_dtbs_pkg
 fi

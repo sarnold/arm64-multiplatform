@@ -112,13 +112,10 @@ mvebu64 () {
 	${git} "${DIR}/patches/mvebu64/0008-PCI-aardvark-set-host-and-device-to-the-same-MAX-pay.patch"
 	${git} "${DIR}/patches/mvebu64/0009-fix-pci-aardvark-use-isr1-interrupt-in-legacy-irq-mo.patch"
 	${git} "${DIR}/patches/mvebu64/0010-ARM64-VDSO-fix-makefile-with-gold-linker-as-default.patch"
-	${git} "${DIR}/patches/mvebu64/0010-enable-spi-i2c.patch"
-	${git} "${DIR}/patches/mvebu64/90-01-add_8812au_8821au_with_monitor_mode_and_frame_injection.patch"
-	${git} "${DIR}/patches/mvebu64/90-02-add_8814au_with_monitor_mode_and_frame_injection.patch"
-	${git} "${DIR}/patches/mvebu64/arm64_increasing_DMA_block_memory_allocation_to_2048.patch"
-	${git} "${DIR}/patches/mvebu64/set-default-target-to-Image.patch"
-	${git} "${DIR}/patches/mvebu64/unlock_atheros_regulatory_restrictions.patch"
-	${git} "${DIR}/patches/mvebu64/zImage_to_Image.patch"
+	${git} "${DIR}/patches/mvebu64/0001-Re-make-enable-spi-i2c-patch.patch"
+	${git} "${DIR}/patches/mvebu64/0011-Re-make-add_8812au_8821au_with_monitor_mode-patch.patch"
+	${git} "${DIR}/patches/mvebu64/0012-Re-make-add_8814au_with_monitor_mode-patch.patch"
+	${git} "${DIR}/patches/mvebu64/0013-Re-make-set-default-target-to-Image-patch.patch"
 }
 
 #external_git
