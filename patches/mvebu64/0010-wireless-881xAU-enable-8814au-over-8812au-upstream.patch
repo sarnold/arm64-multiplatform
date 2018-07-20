@@ -1,0 +1,61 @@
+From c1a93743af2e3f00c73c4ce16dd0b2c7b671ebfe Mon Sep 17 00:00:00 2001
+From: Steve Arnold <nerdboy@gentoo.org>
+Date: Thu, 19 Jul 2018 21:16:38 -0700
+Subject: [PATCH 10/13] wireless: 881xAU enable 8814au over 8812au (upstream)
+
+Signed-off-by: Steve Arnold <nerdboy@gentoo.org>
+---
+ drivers/net/wireless/rtl8812au/Kconfig  | 5 -----
+ drivers/net/wireless/rtl8814au/Kconfig  | 6 ------
+ drivers/net/wireless/rtl8814au/Makefile | 6 +++---
+ 3 files changed, 3 insertions(+), 14 deletions(-)
+
+diff --git a/drivers/net/wireless/rtl8812au/Kconfig b/drivers/net/wireless/rtl8812au/Kconfig
+index 16d3567ad5c1..f87653d5ae21 100644
+--- a/drivers/net/wireless/rtl8812au/Kconfig
++++ b/drivers/net/wireless/rtl8812au/Kconfig
+@@ -4,8 +4,3 @@ config RTL8812AU
+ 	---help---
+ 	  Help message of RTL8812AU
+ 
+-config RTL8814AU
+-	tristate "Realtek 8814A USB WiFi"
+-	depends on USB
+-	---help---
+-	  Help message of RTL8814AU
+diff --git a/drivers/net/wireless/rtl8814au/Kconfig b/drivers/net/wireless/rtl8814au/Kconfig
+index 16d3567ad5c1..730c4e022884 100644
+--- a/drivers/net/wireless/rtl8814au/Kconfig
++++ b/drivers/net/wireless/rtl8814au/Kconfig
+@@ -1,9 +1,3 @@
+-config RTL8812AU
+-	tristate "Realtek 8812A USB WiFi"
+-	depends on USB
+-	---help---
+-	  Help message of RTL8812AU
+-
+ config RTL8814AU
+ 	tristate "Realtek 8814A USB WiFi"
+ 	depends on USB
+diff --git a/drivers/net/wireless/rtl8814au/Makefile b/drivers/net/wireless/rtl8814au/Makefile
+index ef959e7e4e50..f71f52487572 100644
+--- a/drivers/net/wireless/rtl8814au/Makefile
++++ b/drivers/net/wireless/rtl8814au/Makefile
+@@ -32,11 +32,11 @@ CONFIG_AUTOCFG_CP = n
+ ########################## WIFI IC ############################
+ CONFIG_MULTIDRV = n
+ CONFIG_RTL8188E = n
+-CONFIG_RTL8812A = y
+-CONFIG_RTL8821A = y
++CONFIG_RTL8812A = n
++CONFIG_RTL8821A = n
+ CONFIG_RTL8192E = n
+ CONFIG_RTL8723B = n
+-CONFIG_RTL8814A = n
++CONFIG_RTL8814A = y
+ CONFIG_RTL8723C = n
+ CONFIG_RTL8188F = n
+ CONFIG_RTL8822B = n
+-- 
+2.16.1
+

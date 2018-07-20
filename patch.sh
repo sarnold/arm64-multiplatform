@@ -104,18 +104,19 @@ local_patch () {
 }
 mvebu64 () {
 	echo "dir: dir"
-	${git} "${DIR}/patches/mvebu64/0004-ARM64-dts-marvell-armada37xx-Enable-USB2-on-espresso.patch"
-	${git} "${DIR}/patches/mvebu64/0006-PCI-aardvark-fix-logic-in-PCI-configuration-read-wri.patch"
-	${git} "${DIR}/patches/mvebu64/0007-arm64-dts-marvell-armada37xx-Add-eth0-alias.patch"
-	${git} "${DIR}/patches/mvebu64/0007-PCI-aardvark-set-PIO_ADDR_LS-correctly-in-advk_pcie_.patch"
-	${git} "${DIR}/patches/mvebu64/0008-fix-pci-aardvark-disable-LOS-state-by-default.patch"
-	${git} "${DIR}/patches/mvebu64/0008-PCI-aardvark-set-host-and-device-to-the-same-MAX-pay.patch"
-	${git} "${DIR}/patches/mvebu64/0009-fix-pci-aardvark-use-isr1-interrupt-in-legacy-irq-mo.patch"
-	${git} "${DIR}/patches/mvebu64/0010-ARM64-VDSO-fix-makefile-with-gold-linker-as-default.patch"
-	${git} "${DIR}/patches/mvebu64/0001-Re-make-enable-spi-i2c-patch.patch"
-	${git} "${DIR}/patches/mvebu64/0011-Re-make-add_8812au_8821au_with_monitor_mode-patch.patch"
-	${git} "${DIR}/patches/mvebu64/0012-Re-make-add_8814au_with_monitor_mode-patch.patch"
-	${git} "${DIR}/patches/mvebu64/0013-Re-make-set-default-target-to-Image-patch.patch"
+	${git} "${DIR}/patches/mvebu64/0001-ARM64-dts-marvell-armada37xx-Enable-USB2-on-espresso.patch"
+	${git} "${DIR}/patches/mvebu64/0002-arm64-dts-marvell-armada37xx-Add-eth0-alias.patch"
+	${git} "${DIR}/patches/mvebu64/0003-arm64-dts-marvell-armada-3720-add-enable-spi0-and-i2.patch"
+	${git} "${DIR}/patches/mvebu64/0004-arm64-dts-marvell-armada-3720-add-enable-sdhci0-emmc.patch"
+	${git} "${DIR}/patches/mvebu64/0005-arm64-increase-DEFAULT_DMA_COHERENT_POOL_SIZE-to-2M.patch"
+	${git} "${DIR}/patches/mvebu64/0006-arm64-update-Image-name-general-debian-packaging-fix.patch"
+	${git} "${DIR}/patches/mvebu64/0007-net-wireless-atheros-unlock-regulatory-restrictions.patch"
+	${git} "${DIR}/patches/mvebu64/0008-wireless-add-drivers-for-rtl8812au-and-rtl8814au.patch"
+	${git} "${DIR}/patches/mvebu64/0009-wireless-add-config-make-options-for-realtek-wifi-881.patch"
+	${git} "${DIR}/patches/mvebu64/0010-wireless-881xAU-enable-8814au-over-8812au-upstream.patch"
+	${git} "${DIR}/patches/mvebu64/0011-wireless-881xAU-update-to-upstream-commit-5a5d0f.patch"
+	${git} "${DIR}/patches/mvebu64/0012-wireless-add-drivers-for-realtek-rtl8188eu.patch"
+	${git} "${DIR}/patches/mvebu64/0013-wireless-add-config-make-options-for-realtek-rtl8188.patch"
 }
 
 #external_git

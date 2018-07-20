@@ -1,0 +1,38 @@
+From 8e59aa2107ae976c53352c51ca4ff943891a155b Mon Sep 17 00:00:00 2001
+From: Steve Arnold <nerdboy@gentoo.org>
+Date: Thu, 19 Jul 2018 21:37:10 -0700
+Subject: [PATCH 13/13] wireless: add config/make options for realtek rtl8188eu
+
+Signed-off-by: Steve Arnold <nerdboy@gentoo.org>
+---
+ drivers/net/wireless/Kconfig  | 1 +
+ drivers/net/wireless/Makefile | 1 +
+ 2 files changed, 2 insertions(+)
+
+diff --git a/drivers/net/wireless/Kconfig b/drivers/net/wireless/Kconfig
+index 903fa3f8055c..3d0500d638aa 100644
+--- a/drivers/net/wireless/Kconfig
++++ b/drivers/net/wireless/Kconfig
+@@ -32,6 +32,7 @@ config WIRELESS_WDS
+ 
+ source "drivers/net/wireless/admtek/Kconfig"
+ source "drivers/net/wireless/ath/Kconfig"
++source "drivers/net/wireless/rtl8188eu/Kconfig"
+ source "drivers/net/wireless/atmel/Kconfig"
+ source "drivers/net/wireless/broadcom/Kconfig"
+ source "drivers/net/wireless/cisco/Kconfig"
+diff --git a/drivers/net/wireless/Makefile b/drivers/net/wireless/Makefile
+index 055acaf88729..f00aa889ebc4 100644
+--- a/drivers/net/wireless/Makefile
++++ b/drivers/net/wireless/Makefile
+@@ -5,6 +5,7 @@
+ 
+ obj-$(CONFIG_WLAN_VENDOR_ADMTEK) += admtek/
+ obj-$(CONFIG_WLAN_VENDOR_ATH) += ath/
++obj-$(CONFIG_RTL8188EU) += rtl8188eu/
+ obj-$(CONFIG_WLAN_VENDOR_ATMEL) += atmel/
+ obj-$(CONFIG_WLAN_VENDOR_BROADCOM) += broadcom/
+ obj-$(CONFIG_WLAN_VENDOR_CISCO) += cisco/
+-- 
+2.16.1
+

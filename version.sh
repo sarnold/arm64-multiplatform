@@ -23,7 +23,7 @@ KERNEL_ARCH=arm64
 toolchain="gcc_linaro_aarch64_gnu_5"
 
 #Kernel/Build
-KERNEL_REL=4.14
+KERNEL_REL=4.17
 KERNEL_TAG=${KERNEL_REL}.3
 BUILD=${build_prefix}0
 kernel_rt=".X-rtY"

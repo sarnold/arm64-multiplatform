@@ -1,0 +1,41 @@
+From 0d9ca64b247a8ef04c8a353896343b4ca63dea35 Mon Sep 17 00:00:00 2001
+From: Steve Arnold <nerdboy@gentoo.org>
+Date: Thu, 19 Jul 2018 21:11:22 -0700
+Subject: [PATCH 09/13] wireless: add config/make options for realtek wifi
+ 881xAU
+
+Signed-off-by: Steve Arnold <nerdboy@gentoo.org>
+---
+ drivers/net/wireless/Kconfig  | 2 ++
+ drivers/net/wireless/Makefile | 2 ++
+ 2 files changed, 4 insertions(+)
+
+diff --git a/drivers/net/wireless/Kconfig b/drivers/net/wireless/Kconfig
+index 166920ae23f8..903fa3f8055c 100644
+--- a/drivers/net/wireless/Kconfig
++++ b/drivers/net/wireless/Kconfig
+@@ -38,6 +38,8 @@ source "drivers/net/wireless/cisco/Kconfig"
+ source "drivers/net/wireless/intel/Kconfig"
+ source "drivers/net/wireless/intersil/Kconfig"
+ source "drivers/net/wireless/marvell/Kconfig"
++source "drivers/net/wireless/rtl8812au/Kconfig"
++source "drivers/net/wireless/rtl8814au/Kconfig"
+ source "drivers/net/wireless/mediatek/Kconfig"
+ source "drivers/net/wireless/ralink/Kconfig"
+ source "drivers/net/wireless/realtek/Kconfig"
+diff --git a/drivers/net/wireless/Makefile b/drivers/net/wireless/Makefile
+index 7fc96306712a..055acaf88729 100644
+--- a/drivers/net/wireless/Makefile
++++ b/drivers/net/wireless/Makefile
+@@ -11,6 +11,8 @@ obj-$(CONFIG_WLAN_VENDOR_CISCO) += cisco/
+ obj-$(CONFIG_WLAN_VENDOR_INTEL) += intel/
+ obj-$(CONFIG_WLAN_VENDOR_INTERSIL) += intersil/
+ obj-$(CONFIG_WLAN_VENDOR_MARVELL) += marvell/
++obj-$(CONFIG_RTL8812AU) += rtl8812au/
++obj-$(CONFIG_RTL8814AU) += rtl8814au/
+ obj-$(CONFIG_WLAN_VENDOR_MEDIATEK) += mediatek/
+ obj-$(CONFIG_WLAN_VENDOR_RALINK) += ralink/
+ obj-$(CONFIG_WLAN_VENDOR_REALTEK) += realtek/
+-- 
+2.16.1
+

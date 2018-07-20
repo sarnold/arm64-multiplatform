@@ -1,0 +1,26 @@
+From fbc7478fc4713f5eebd8caf6b684febda1d301c4 Mon Sep 17 00:00:00 2001
+From: Steve Arnold <nerdboy@gentoo.org>
+Date: Thu, 19 Jul 2018 20:57:11 -0700
+Subject: [PATCH 05/13] arm64: increase DEFAULT_DMA_COHERENT_POOL_SIZE to 2M
+
+Signed-off-by: Steve Arnold <nerdboy@gentoo.org>
+---
+ arch/arm64/mm/dma-mapping.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/mm/dma-mapping.c b/arch/arm64/mm/dma-mapping.c
+index a96ec0181818..2c75f606dc95 100644
+--- a/arch/arm64/mm/dma-mapping.c
++++ b/arch/arm64/mm/dma-mapping.c
+@@ -44,7 +44,7 @@ static pgprot_t __get_dma_pgprot(unsigned long attrs, pgprot_t prot,
+ 
+ static struct gen_pool *atomic_pool __ro_after_init;
+ 
+-#define DEFAULT_DMA_COHERENT_POOL_SIZE  SZ_256K
++#define DEFAULT_DMA_COHERENT_POOL_SIZE  SZ_2M
+ static size_t atomic_pool_size __initdata = DEFAULT_DMA_COHERENT_POOL_SIZE;
+ 
+ static int __init early_coherent_pool(char *p)
+-- 
+2.16.1
+

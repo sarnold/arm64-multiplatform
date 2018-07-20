@@ -1,0 +1,34 @@
+From cc4b28df99abd49304c45f2f17532738125e8b21 Mon Sep 17 00:00:00 2001
+From: Steve Arnold <nerdboy@gentoo.org>
+Date: Thu, 19 Jul 2018 20:53:51 -0700
+Subject: [PATCH 04/13] arm64: dts: marvell: armada-3720: add/enable sdhci0
+ (emmc)
+
+Signed-off-by: Steve Arnold <nerdboy@gentoo.org>
+---
+ arch/arm64/boot/dts/marvell/armada-3720-espressobin.dts | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dts
+index d2f944825dfa..ebdda7400103 100644
+--- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dts
++++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dts
+@@ -63,6 +63,15 @@
+ 	status = "okay";
+ };
+ 
++&sdhci0 {
++	non-removable;
++	bus-width = <8>;
++	mmc-ddr-1_8v;
++	mmc-hs400-1_8v;
++	marvell,pad-type = "fixed-1-8v";
++	status = "okay";
++};
++
+ /* Exported on the micro USB connector J5 through an FTDI */
+ &uart0 {
+ 	pinctrl-names = "default";
+-- 
+2.16.1
+
