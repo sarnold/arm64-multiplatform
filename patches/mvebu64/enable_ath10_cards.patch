@@ -1,0 +1,31 @@
+From 31a967d51b77e27e04cf77d19aeb276fc9bab968 Mon Sep 17 00:00:00 2001
+From: Steve Arnold <nerdboy@gentoo.org>
+Date: Fri, 20 Jul 2018 18:46:28 -0700
+Subject: [PATCH] drivers/pci/host/pci-aardvark.c: respin armbian patch for
+ ath10 cards
+
+Signed-off-by: Steve Arnold <nerdboy@gentoo.org>
+---
+ drivers/pci/host/pci-aardvark.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/pci/host/pci-aardvark.c b/drivers/pci/host/pci-aardvark.c
+index 9abf549631b4..624eacf4388d 100644
+--- a/drivers/pci/host/pci-aardvark.c
++++ b/drivers/pci/host/pci-aardvark.c
+@@ -305,10 +305,10 @@ static void advk_pcie_setup_hw(struct advk_pcie *pcie)
+ 		PCIE_CORE_CTRL2_TD_ENABLE;
+ 	advk_writel(pcie, reg, PCIE_CORE_CTRL2_REG);
+ 
+-	/* Set GEN2 */
++	/* Set GEN1 instead of GEN2 for ath10 cards */
+ 	reg = advk_readl(pcie, PCIE_CORE_CTRL0_REG);
+ 	reg &= ~PCIE_GEN_SEL_MSK;
+-	reg |= SPEED_GEN_2;
++	reg |= SPEED_GEN_1;
+ 	advk_writel(pcie, reg, PCIE_CORE_CTRL0_REG);
+ 
+ 	/* Set lane X1 */
+-- 
+2.16.1
+

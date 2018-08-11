@@ -211,10 +211,10 @@ fi
 /bin/sh -e "${DIR}/scripts/gcc.sh" || { exit 1 ; }
 . "${DIR}/.CC"
 echo "CROSS_COMPILE=${CC}"
-if [ -f /usr/bin/ccache ] ; then
-	echo "ccache [enabled]"
-	CC="ccache ${CC}"
-fi
+#if [ -f /usr/bin/ccache ] ; then
+#	echo "ccache [enabled]"
+#	CC="ccache ${CC}"
+#fi
 
 . "${DIR}/version.sh"
 export LINUX_GIT

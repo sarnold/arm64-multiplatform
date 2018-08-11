@@ -198,10 +198,10 @@ fi
 /bin/sh -e "${DIR}/scripts/gcc.sh" || { exit 1 ; }
 . "${DIR}/.CC"
 echo "CROSS_COMPILE=${CC}"
-if [ -f /usr/bin/ccache ] ; then
-	echo "ccache [enabled]"
-	CC="ccache ${CC}"
-fi
+#if [ -f /usr/bin/ccache ] ; then
+#	echo "ccache [enabled]"
+#	CC="ccache ${CC}"
+#fi
 
 . "${DIR}/version.sh"
 export LINUX_GIT
@@ -228,7 +228,7 @@ if [  -f "${DIR}/.yakbuild" ] ; then
 fi
 make_kernel
 make_modules_pkg
-make_firmware_pkg
+#make_firmware_pkg
 if grep -q dtbs "${DIR}/KERNEL/arch/${KERNEL_ARCH}/Makefile"; then
 	make_dtbs_pkg
 fi

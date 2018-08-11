@@ -34,7 +34,7 @@ if [ ! "x${git_no_edit}" = "x" ] ; then
 	git_opts="--no-edit"
 fi
 
-git="git am"
+git="git am --whitespace=fix"
 #git_patchset=""
 #git_opts
 
@@ -104,19 +104,24 @@ local_patch () {
 }
 mvebu64 () {
 	echo "dir: dir"
-	${git} "${DIR}/patches/mvebu64/0001-ARM64-dts-marvell-armada37xx-Enable-USB2-on-espresso.patch"
+	${git} "${DIR}/patches/mvebu64/0004-ARM64-dts-marvell-armada37xx-Enable-USB2-on-espresso.patch"
 	${git} "${DIR}/patches/mvebu64/0002-arm64-dts-marvell-armada37xx-Add-eth0-alias.patch"
-	${git} "${DIR}/patches/mvebu64/0003-arm64-dts-marvell-armada-3720-add-enable-spi0-and-i2.patch"
-	${git} "${DIR}/patches/mvebu64/0004-arm64-dts-marvell-armada-3720-add-enable-sdhci0-emmc.patch"
-	${git} "${DIR}/patches/mvebu64/0005-arm64-increase-DEFAULT_DMA_COHERENT_POOL_SIZE-to-2M.patch"
-	${git} "${DIR}/patches/mvebu64/0006-arm64-update-Image-name-general-debian-packaging-fix.patch"
-	${git} "${DIR}/patches/mvebu64/0007-net-wireless-atheros-unlock-regulatory-restrictions.patch"
-	${git} "${DIR}/patches/mvebu64/0008-wireless-add-drivers-for-rtl8812au-and-rtl8814au.patch"
-	${git} "${DIR}/patches/mvebu64/0009-wireless-add-config-make-options-for-realtek-wifi-881.patch"
-	${git} "${DIR}/patches/mvebu64/0010-wireless-881xAU-enable-8814au-over-8812au-upstream.patch"
-	${git} "${DIR}/patches/mvebu64/0011-wireless-881xAU-update-to-upstream-commit-5a5d0f.patch"
-	${git} "${DIR}/patches/mvebu64/0012-wireless-add-drivers-for-realtek-rtl8188eu.patch"
-	${git} "${DIR}/patches/mvebu64/0013-wireless-add-config-make-options-for-realtek-rtl8188.patch"
+	${git} "${DIR}/patches/mvebu64/0008-fix-pci-aardvark-disable-LOS-state-by-default.patch"
+	${git} "${DIR}/patches/mvebu64/0008-PCI-aardvark-set-host-and-device-to-the-same-MAX-pay.patch"
+	${git} "${DIR}/patches/mvebu64/0010-ARM64-marvell-dts-espressobin-respin-enable-spi-i2c-.patch"
+	${git} "${DIR}/patches/mvebu64/0011-espressobin-enable-emmc.patch"
+	${git} "${DIR}/patches/mvebu64/1-2-clk-mvebu-armada-37xx-periph-Fix-switching-CPU-rate-from-300Mhz-to-1.2GHz.patch"
+	${git} "${DIR}/patches/mvebu64/enable_ath10_cards.patch"
+	${git} "${DIR}/patches/mvebu64/general-aufs4.17-20180611.patch"
+	${git} "${DIR}/patches/mvebu64/general-increasing_DMA_block_memory_allocation_to_2048.patch"
+	${git} "${DIR}/patches/mvebu64/general-packaging-4.17-dev.patch"
+	${git} "${DIR}/patches/mvebu64/unlock_atheros_regulatory_restrictions.patch"
+	${git} "${DIR}/patches/mvebu64/wifi-0001-realtek-wifi-881xAU-605ecfa.patch"
+	${git} "${DIR}/patches/mvebu64/wifi-0002-realtek-wifi-881xAU-adding-kernel-4.14.patch"
+	${git} "${DIR}/patches/mvebu64/wifi-0003-realtek-wifi-881xAU-enable-8814au.patch"
+	${git} "${DIR}/patches/mvebu64/wifi-0005-realtek-wifi-881xAU-update-to-5a5d0f.patch"
+	${git} "${DIR}/patches/mvebu64/wifi-2001-01-rtl8188eu-kconfig-makefile.patch"
+	${git} "${DIR}/patches/mvebu64/wifi-2002-02-rtl8188eu.patch"
 }
 
 #external_git
