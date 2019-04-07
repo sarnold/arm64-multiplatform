@@ -161,7 +161,7 @@ meson64 () {
 #external_git
 #rt
 #local_patch
-meson64
+#meson64
 
 packaging () {
 	echo "dir: packaging"
