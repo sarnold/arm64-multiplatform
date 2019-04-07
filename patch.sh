@@ -158,10 +158,17 @@ meson64 () {
 	${git} "${DIR}/patches/meson64/0023-drm-meson-Fix-an-Alpha-Primary-Plane-bug-on-Meson-GX.patch"
 }
 
+usb_phy () {
+	echo "dir: usb_phy"
+	${git} "${DIR}/patches/meson64/0001-ARM64-dts-meson-gxbb-odroidc2-Fix-usb-phy-reset-warning.patch"
+	${git} "${DIR}/patches/meson64/0002-ARM64-dts-meson-gxbb-odroidc2-Fix-usb-phy-regulator-power-failed-warning.patch"
+}
+
 #external_git
 #rt
 #local_patch
 #meson64
+usb_phy
 
 packaging () {
 	echo "dir: packaging"

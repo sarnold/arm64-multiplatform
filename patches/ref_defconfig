@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Linux/arm64 5.0.5 Kernel Configuration
+# Linux/arm64 5.0.7 Kernel Configuration
 #
 
 #
@@ -1822,6 +1822,7 @@ CONFIG_MACVTAP=m
 # CONFIG_IPVLAN is not set
 # CONFIG_VXLAN is not set
 # CONFIG_GENEVE is not set
+# CONFIG_GTP is not set
 # CONFIG_MACSEC is not set
 # CONFIG_NETCONSOLE is not set
 CONFIG_TUN=y
