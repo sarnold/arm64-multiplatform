@@ -170,12 +170,27 @@ pine64 () {
 	${git} "${DIR}/patches/pine64/0004-arm64-allwinner-a64-disable-the-RTL8211E-internal-RX.patch"
 }
 
+drivers () {
+	echo "dir: drivers"
+	${git} "${DIR}/patches/drivers/0001-net-smsc95xx-Allow-mac-address-to-be-set-as-a-parame.patch"
+}
+
+rockchip () {
+	echo "dir: rockchip"
+	${git} "${DIR}/patches/rockchip/0002-arm64-dts-rockchip-disable-pwm0-on-rk3399-firefly.patch"
+	${git} "${DIR}/patches/rockchip/0003-arm64-dts-rockchip-add-usb3-controller-node-for-RK33.patch"
+	${git} "${DIR}/patches/rockchip/0004-arm64-dts-rockchip-enable-usb3-nodes-on-rk3328-rock6.patch"
+	${git} "${DIR}/patches/rockchip/0005-arm64-dts-rockchip-Fix-vcc_host1_5v-GPIO-polarity-on.patch"
+}
+
 #external_git
 #rt
 #local_patch
 #meson64
 pine64
 usb_phy
+drivers
+rockchip
 
 packaging () {
 	echo "dir: packaging"
