@@ -164,10 +164,17 @@ usb_phy () {
 	${git} "${DIR}/patches/meson64/0002-ARM64-dts-meson-gxbb-odroidc2-Fix-usb-phy-regulator-power-failed-warning.patch"
 }
 
+pine64 () {
+	echo "dir: pine64"
+	${git} "${DIR}/patches/pine64/0003-net-stmmac-dwmac-sun8i-support-RGMII-modes-with-PHY-.patch"
+	${git} "${DIR}/patches/pine64/0004-arm64-allwinner-a64-disable-the-RTL8211E-internal-RX.patch"
+}
+
 #external_git
 #rt
 #local_patch
 #meson64
+pine64
 usb_phy
 
 packaging () {
