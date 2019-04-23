@@ -187,10 +187,10 @@ rockchip () {
 #rt
 #local_patch
 #meson64
-pine64
+#pine64
 usb_phy
-drivers
-rockchip
+#drivers
+#rockchip
 
 packaging () {
 	echo "dir: packaging"
