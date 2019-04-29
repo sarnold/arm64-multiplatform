@@ -103,6 +103,13 @@ local_patch () {
 	${git} "${DIR}/patches/dir/0001-patch.patch"
 }
 
+bootsplash () {
+        echo "dir: bootsplash"
+	${git} "${DIR}/patches/bootsplash/0001-linux-stable-Add-kernel-bootsplash-patches.patch"
+	${git} "${DIR}/patches/bootsplash/0002-bootsplash-add-gentoo-logo-build-script.patch"
+	${git} "${DIR}/patches/bootsplash/0003-tools-bootsplash-Makefile-fix-include-paths.patch"
+}
+
 meson64 () {
 	echo "dir: meson64"
 	${git} "${DIR}/patches/meson64/0001-ARM64-defconfig-enable-CEC-support.patch"
@@ -186,6 +193,7 @@ rockchip () {
 #external_git
 #rt
 #local_patch
+bootsplash
 #meson64
 #pine64
 usb_phy
