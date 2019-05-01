@@ -1,0 +1,37 @@
+From bdb5ef0c8c3795b74721d065d8caf686fbbb3163 Mon Sep 17 00:00:00 2001
+From: Steve Arnold <nerdboy@gentoo.org>
+Date: Mon, 29 Apr 2019 15:32:22 -0700
+Subject: [PATCH] Fix build error in arm64 VDSO when gold linker is default
+
+Signed-off-by: Steve Arnold <nerdboy@gentoo.org>
+---
+ arch/arm64/kernel/vdso/Makefile | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/kernel/vdso/Makefile b/arch/arm64/kernel/vdso/Makefile
+index b215c712d897..5ae78b86607c 100644
+--- a/arch/arm64/kernel/vdso/Makefile
++++ b/arch/arm64/kernel/vdso/Makefile
+@@ -16,6 +16,10 @@ ccflags-y := -shared -fno-common -fno-builtin
+ ccflags-y += -nostdlib -Wl,-soname=linux-vdso.so.1 \
+ 		$(call cc-ldoption, -Wl$(comma)--hash-style=sysv)
+ 
++# this is needed if ld.gold is default
++VDSO_LDFLAGS := $(call cc-ldoption, -Wl$(comma)--build-id)
++VDSO_LDFLAGS += $(call cc-ldoption, -fuse-ld=bfd)
++
+ # Disable gcov profiling for VDSO code
+ GCOV_PROFILE := n
+ 
+@@ -55,7 +59,7 @@ $(obj-vdso): %.o: %.S FORCE
+ 
+ # Actual build commands
+ quiet_cmd_vdsold = VDSOL   $@
+-      cmd_vdsold = $(CC) $(c_flags) -Wl,-n -Wl,-T $^ -o $@
++      cmd_vdsold = $(CC) $(c_flags) $(VDSO_LDFLAGS) -Wl,-n -Wl,-T $^ -o $@
+ quiet_cmd_vdsoas = VDSOA   $@
+       cmd_vdsoas = $(CC) $(a_flags) -c -o $@ $<
+ 
+-- 
+2.20.1
+

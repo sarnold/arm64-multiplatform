@@ -200,6 +200,11 @@ usb_phy
 #drivers
 #rockchip
 
+toolchain () {
+	echo "dir: toolchain"
+	${git} "${DIR}/patches/toolchain/0001-Fix-build-error-in-arm64-VDSO-when-gold-linker-is-default.patch"
+}
+
 packaging () {
 	echo "dir: packaging"
 	#regenerate="enable"
@@ -213,5 +218,6 @@ packaging () {
 	fi
 }
 
+toolchain
 #packaging
 echo "patch.sh ran successfully"
