@@ -1,0 +1,162 @@
+From b0a32fb5d960940c483a52f5a1be39b58726a83a Mon Sep 17 00:00:00 2001
+From: Corentin Labbe <clabbe.montjoie@gmail.com>
+Date: Thu, 24 Jan 2019 15:18:42 +0100
+Subject: [PATCH 09/14] crypto: move sunxi-ss in the dedicated allwinner
+ directory
+
+This patch move the sunxi-ss driver in the dedicated allwinner directory
+
+Signed-off-by: Corentin Labbe <clabbe.montjoie@gmail.com>
+---
+ MAINTAINERS                                   |  6 -----
+ drivers/crypto/Kconfig                        | 25 ------------------
+ drivers/crypto/Makefile                       |  1 -
+ drivers/crypto/allwinner/Kconfig              | 26 +++++++++++++++++++
+ drivers/crypto/allwinner/Makefile             |  1 +
+ .../crypto/{ => allwinner}/sunxi-ss/Makefile  |  0
+ .../sunxi-ss/sun4i-ss-cipher.c                |  0
+ .../{ => allwinner}/sunxi-ss/sun4i-ss-core.c  |  0
+ .../{ => allwinner}/sunxi-ss/sun4i-ss-hash.c  |  0
+ .../{ => allwinner}/sunxi-ss/sun4i-ss-prng.c  |  0
+ .../{ => allwinner}/sunxi-ss/sun4i-ss.h       |  0
+ 11 files changed, 27 insertions(+), 32 deletions(-)
+ rename drivers/crypto/{ => allwinner}/sunxi-ss/Makefile (100%)
+ rename drivers/crypto/{ => allwinner}/sunxi-ss/sun4i-ss-cipher.c (100%)
+ rename drivers/crypto/{ => allwinner}/sunxi-ss/sun4i-ss-core.c (100%)
+ rename drivers/crypto/{ => allwinner}/sunxi-ss/sun4i-ss-hash.c (100%)
+ rename drivers/crypto/{ => allwinner}/sunxi-ss/sun4i-ss-prng.c (100%)
+ rename drivers/crypto/{ => allwinner}/sunxi-ss/sun4i-ss.h (100%)
+
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 8611452651ff..50c35ea70b80 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -665,12 +665,6 @@ S:	Maintained
+ F:	Documentation/i2c/busses/i2c-ali1563
+ F:	drivers/i2c/busses/i2c-ali1563.c
+ 
+-ALLWINNER SECURITY SYSTEM
+-M:	Corentin Labbe <clabbe.montjoie@gmail.com>
+-L:	linux-crypto@vger.kernel.org
+-S:	Maintained
+-F:	drivers/crypto/sunxi-ss/
+-
+ ALLWINNER CRYPTO ENGINE
+ M:	Corentin Labbe <clabbe.montjoie@gmail.com>
+ L:	linux-crypto@vger.kernel.org
+diff --git a/drivers/crypto/Kconfig b/drivers/crypto/Kconfig
+index 427216c98249..c0dd387f4152 100644
+--- a/drivers/crypto/Kconfig
++++ b/drivers/crypto/Kconfig
+@@ -629,31 +629,6 @@ config CRYPTO_DEV_IMGTEC_HASH
+ 	  hardware hash accelerator. Supporting MD5/SHA1/SHA224/SHA256
+ 	  hashing algorithms.
+ 
+-config CRYPTO_DEV_SUN4I_SS
+-	tristate "Support for Allwinner Security System cryptographic accelerator"
+-	depends on ARCH_SUNXI && !64BIT
+-	select CRYPTO_MD5
+-	select CRYPTO_SHA1
+-	select CRYPTO_AES
+-	select CRYPTO_DES
+-	select CRYPTO_BLKCIPHER
+-	help
+-	  Some Allwinner SoC have a crypto accelerator named
+-	  Security System. Select this if you want to use it.
+-	  The Security System handle AES/DES/3DES ciphers in CBC mode
+-	  and SHA1 and MD5 hash algorithms.
+-
+-	  To compile this driver as a module, choose M here: the module
+-	  will be called sun4i-ss.
+-
+-config CRYPTO_DEV_SUN4I_SS_PRNG
+-	bool "Support for Allwinner Security System PRNG"
+-	depends on CRYPTO_DEV_SUN4I_SS
+-	select CRYPTO_RNG
+-	help
+-	  Select this option if you want to provide kernel-side support for
+-	  the Pseudo-Random Number Generator found in the Security System.
+-
+ config CRYPTO_DEV_ROCKCHIP
+ 	tristate "Rockchip's Cryptographic Engine driver"
+ 	depends on OF && ARCH_ROCKCHIP
+diff --git a/drivers/crypto/Makefile b/drivers/crypto/Makefile
+index f036424861ac..98f2a1321d14 100644
+--- a/drivers/crypto/Makefile
++++ b/drivers/crypto/Makefile
+@@ -39,7 +39,6 @@ obj-$(CONFIG_CRYPTO_DEV_ROCKCHIP) += rockchip/
+ obj-$(CONFIG_CRYPTO_DEV_S5P) += s5p-sss.o
+ obj-$(CONFIG_CRYPTO_DEV_SAHARA) += sahara.o
+ obj-$(CONFIG_ARCH_STM32) += stm32/
+-obj-$(CONFIG_CRYPTO_DEV_SUN4I_SS) += sunxi-ss/
+ obj-$(CONFIG_CRYPTO_DEV_TALITOS) += talitos.o
+ obj-$(CONFIG_CRYPTO_DEV_UX500) += ux500/
+ obj-$(CONFIG_CRYPTO_DEV_VIRTIO) += virtio/
+diff --git a/drivers/crypto/allwinner/Kconfig b/drivers/crypto/allwinner/Kconfig
+index e193938ddeb7..dfbae9555dbe 100644
+--- a/drivers/crypto/allwinner/Kconfig
++++ b/drivers/crypto/allwinner/Kconfig
+@@ -32,3 +32,29 @@ config CRYPTO_DEV_SUN8I_CE_DEBUG
+ 	  Say y to enabled sun8i-ce debug stats.
+ 	  This will create /sys/kernel/debug/sun8i-ce/stats for displaying
+ 	  the number of requests per flow and per algorithm.
++
++config CRYPTO_DEV_SUN4I_SS
++	tristate "Support for Allwinner Security System cryptographic accelerator"
++	depends on ARCH_SUNXI && !64BIT
++	select CRYPTO_MD5
++	select CRYPTO_SHA1
++	select CRYPTO_AES
++	select CRYPTO_DES
++	select CRYPTO_BLKCIPHER
++	depends on CRYPTO_DEV_ALLWINNER
++	help
++	  Some Allwinner SoC have a crypto accelerator named
++	  Security System. Select this if you want to use it.
++	  The Security System handle AES/DES/3DES ciphers in CBC mode
++	  and SHA1 and MD5 hash algorithms.
++
++	  To compile this driver as a module, choose M here: the module
++	  will be called sun4i-ss.
++
++config CRYPTO_DEV_SUN4I_SS_PRNG
++	bool "Support for Allwinner Security System PRNG"
++	depends on CRYPTO_DEV_SUN4I_SS
++	select CRYPTO_RNG
++	help
++	  Select this option if you want to provide kernel-side support for
++	  the Pseudo-Random Number Generator found in the Security System.
+diff --git a/drivers/crypto/allwinner/Makefile b/drivers/crypto/allwinner/Makefile
+index 11f02db9ee06..04979340cd09 100644
+--- a/drivers/crypto/allwinner/Makefile
++++ b/drivers/crypto/allwinner/Makefile
+@@ -1 +1,2 @@
+ obj-$(CONFIG_CRYPTO_DEV_SUN8I_CE) += sun8i-ce/
++obj-$(CONFIG_CRYPTO_DEV_SUN4I_SS) += sunxi-ss/
+diff --git a/drivers/crypto/sunxi-ss/Makefile b/drivers/crypto/allwinner/sunxi-ss/Makefile
+similarity index 100%
+rename from drivers/crypto/sunxi-ss/Makefile
+rename to drivers/crypto/allwinner/sunxi-ss/Makefile
+diff --git a/drivers/crypto/sunxi-ss/sun4i-ss-cipher.c b/drivers/crypto/allwinner/sunxi-ss/sun4i-ss-cipher.c
+similarity index 100%
+rename from drivers/crypto/sunxi-ss/sun4i-ss-cipher.c
+rename to drivers/crypto/allwinner/sunxi-ss/sun4i-ss-cipher.c
+diff --git a/drivers/crypto/sunxi-ss/sun4i-ss-core.c b/drivers/crypto/allwinner/sunxi-ss/sun4i-ss-core.c
+similarity index 100%
+rename from drivers/crypto/sunxi-ss/sun4i-ss-core.c
+rename to drivers/crypto/allwinner/sunxi-ss/sun4i-ss-core.c
+diff --git a/drivers/crypto/sunxi-ss/sun4i-ss-hash.c b/drivers/crypto/allwinner/sunxi-ss/sun4i-ss-hash.c
+similarity index 100%
+rename from drivers/crypto/sunxi-ss/sun4i-ss-hash.c
+rename to drivers/crypto/allwinner/sunxi-ss/sun4i-ss-hash.c
+diff --git a/drivers/crypto/sunxi-ss/sun4i-ss-prng.c b/drivers/crypto/allwinner/sunxi-ss/sun4i-ss-prng.c
+similarity index 100%
+rename from drivers/crypto/sunxi-ss/sun4i-ss-prng.c
+rename to drivers/crypto/allwinner/sunxi-ss/sun4i-ss-prng.c
+diff --git a/drivers/crypto/sunxi-ss/sun4i-ss.h b/drivers/crypto/allwinner/sunxi-ss/sun4i-ss.h
+similarity index 100%
+rename from drivers/crypto/sunxi-ss/sun4i-ss.h
+rename to drivers/crypto/allwinner/sunxi-ss/sun4i-ss.h
+-- 
+2.20.1
+

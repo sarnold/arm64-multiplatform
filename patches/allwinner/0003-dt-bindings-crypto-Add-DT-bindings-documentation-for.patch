@@ -1,0 +1,70 @@
+From d410e7153606f6c7013d7c3e63f3bd9b40953a9c Mon Sep 17 00:00:00 2001
+From: Corentin Labbe <clabbe.montjoie@gmail.com>
+Date: Fri, 18 Nov 2016 10:59:56 +0100
+Subject: [PATCH 03/14] dt-bindings: crypto: Add DT bindings documentation for
+ sun8i-ce Crypto Engine
+
+This patch adds documentation for Device-Tree bindings for the
+Crypto Engine cryptographic accelerator driver.
+
+Signed-off-by: Corentin Labbe <clabbe.montjoie@gmail.com>
+---
+ .../devicetree/bindings/crypto/sun8i-ce.txt   | 46 +++++++++++++++++++
+ 1 file changed, 46 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/crypto/sun8i-ce.txt
+
+diff --git a/Documentation/devicetree/bindings/crypto/sun8i-ce.txt b/Documentation/devicetree/bindings/crypto/sun8i-ce.txt
+new file mode 100644
+index 000000000000..67adc4714429
+--- /dev/null
++++ b/Documentation/devicetree/bindings/crypto/sun8i-ce.txt
+@@ -0,0 +1,46 @@
++* Allwinner Crypto Engine found on H3/A64/H5/H6/R40 SoC
++
++Required properties:
++- compatible : Should be one of
++	"allwinner,sun8i-h3-crypto"
++	"allwinner,sun8i-r40-crypto"
++	"allwinner,sun50i-a64-crypto"
++	"allwinner,sun50i-h5-crypto"
++	"allwinner,sun50i-h6-crypto"
++- reg: Should contain the CE register location and length.
++- interrupts: Should contain the IRQ line for the device. (Non secure IRQ if
++  both secure/non-secure exist)
++- clocks : List of clock specifiers, corresponding to AHB and CE.
++- clock-names : Name of the functional clock, should be
++	* "ahb" : AHB gating clock
++	* "mod" : CE controller clock
++
++Additional required properties for allwinner,sun50i-h6-crypto:
++- clocks : List of MBUS clock specifiers
++- clock-names : Name of the functional clock, should be
++	* "mbus" : MBUS gating clock
++
++Optional properties:
++ - resets : phandle + reset specifier pair
++ - reset-names : must contain "ahb"
++
++Examples:
++	crypto: crypto@1c15000 {
++		compatible = "allwinner,sun8i-h3-crypto";
++		reg = <0x01c15000 0x1000>;
++		interrupts = <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>;
++		resets = <&ccu RST_BUS_CE>;
++		reset-names = "ahb";
++		clocks = <&ccu CLK_BUS_CE>, <&ccu CLK_CE>;
++		clock-names = "ahb", "mod";
++	};
++
++	crypto: crypto@1904000 {
++		compatible = "allwinner,sun50i-h6-crypto";
++		reg = <0x01904000 0x1000>;
++		interrupts = <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&ccu CLK_BUS_CE>, <&ccu CLK_CE>, <&ccu CLK_MBUS_CE>;
++		clock-names = "ahb", "mod", "mbus";
++		resets = <&ccu RST_BUS_CE>;
++		reset-names = "ahb";
++	};
+-- 
+2.20.1
+

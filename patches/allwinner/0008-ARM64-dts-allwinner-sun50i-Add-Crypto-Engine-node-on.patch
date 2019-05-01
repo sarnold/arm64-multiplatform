@@ -1,0 +1,40 @@
+From 0aedb46f15fed016369aaaf09160f93431b51425 Mon Sep 17 00:00:00 2001
+From: Corentin Labbe <clabbe.montjoie@gmail.com>
+Date: Fri, 22 Mar 2019 10:21:08 +0100
+Subject: [PATCH 08/14] ARM64: dts: allwinner: sun50i: Add Crypto Engine node
+ on H6
+
+The Crypto Engine is a hardware cryptographic accelerator that support
+AES/MD5/SHA1/DES/3DES/PRNG algorithms.
+
+This patch enable the Crypto Engine on the Allwinner H6 SoC Device-tree.
+
+Signed-off-by: Corentin Labbe <clabbe.montjoie@gmail.com>
+---
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+index d93a7add67e7..159d9151692a 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+@@ -146,6 +146,16 @@
+ 			};
+ 		};
+ 
++		crypto: crypto@1904000 {
++			compatible = "allwinner,sun50i-h6-crypto";
++			reg = <0x01904000 0x1000>;
++			clocks = <&ccu CLK_BUS_CE>, <&ccu CLK_CE>, <&ccu CLK_MBUS_CE>;
++			clock-names = "ahb", "mod", "mbus";
++			resets = <&ccu RST_BUS_CE>;
++			reset-names = "ahb";
++			interrupts = <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>;
++		};
++
+ 		syscon: syscon@3000000 {
+ 			compatible = "allwinner,sun50i-h6-system-control",
+ 				     "allwinner,sun50i-a64-system-control";
+-- 
+2.20.1
+

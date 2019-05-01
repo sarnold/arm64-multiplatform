@@ -190,6 +190,24 @@ rockchip () {
 	${git} "${DIR}/patches/rockchip/0005-arm64-dts-rockchip-Fix-vcc_host1_5v-GPIO-polarity-on.patch"
 }
 
+allwinner () {
+	echo "dir: allwinner"
+	${git} "${DIR}/patches/allwinner/0001-crypto-Add-allwinner-subdirectory.patch"
+	${git} "${DIR}/patches/allwinner/0002-crypto-Add-Allwinner-sun8i-ce-Crypto-Engine.patch"
+	${git} "${DIR}/patches/allwinner/0003-dt-bindings-crypto-Add-DT-bindings-documentation-for.patch"
+	${git} "${DIR}/patches/allwinner/0004-ARM-dts-sun8i-r40-add-crypto-engine-node.patch"
+	${git} "${DIR}/patches/allwinner/0005-ARM-dts-sun8i-h3-Add-Crypto-Engine-node.patch"
+	${git} "${DIR}/patches/allwinner/0006-ARM64-dts-allwinner-sun50i-Add-Crypto-Engine-node-on.patch"
+	${git} "${DIR}/patches/allwinner/0007-ARM64-dts-allwinner-sun50i-Add-crypto-engine-node-on.patch"
+	${git} "${DIR}/patches/allwinner/0008-ARM64-dts-allwinner-sun50i-Add-Crypto-Engine-node-on.patch"
+	${git} "${DIR}/patches/allwinner/0009-crypto-move-sunxi-ss-in-the-dedicated-allwinner-dire.patch"
+	${git} "${DIR}/patches/allwinner/0010-sunxi_defconfig-add-new-crypto-options.patch"
+	${git} "${DIR}/patches/allwinner/0011-crypto-introduce-sun8i-ss.patch"
+	${git} "${DIR}/patches/allwinner/0012-dt-bindings-crypto-Add-DT-bindings-documentation-for.patch"
+	${git} "${DIR}/patches/allwinner/0013-ARM-dts-sun8i-a83t-Add-Security-System-node.patch"
+	${git} "${DIR}/patches/allwinner/0014-ARM-dts-sun9i-a80-Add-Security-System.patch"
+}
+
 #external_git
 #rt
 #local_patch
@@ -199,6 +217,7 @@ bootsplash
 usb_phy
 #drivers
 #rockchip
+allwinner
 
 toolchain () {
 	echo "dir: toolchain"

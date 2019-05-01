@@ -1,0 +1,36 @@
+From edf98be8ccb14754d7ddca6fa82055011c1e3356 Mon Sep 17 00:00:00 2001
+From: Corentin Labbe <clabbe.montjoie@gmail.com>
+Date: Sat, 9 Feb 2019 20:19:14 +0100
+Subject: [PATCH 14/14] ARM: dts: sun9i: a80: Add Security System
+
+Signed-off-by: Corentin Labbe <clabbe.montjoie@gmail.com>
+---
+ arch/arm/boot/dts/sun9i-a80.dtsi | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+diff --git a/arch/arm/boot/dts/sun9i-a80.dtsi b/arch/arm/boot/dts/sun9i-a80.dtsi
+index d9532fb1ef65..dce4241482b0 100644
+--- a/arch/arm/boot/dts/sun9i-a80.dtsi
++++ b/arch/arm/boot/dts/sun9i-a80.dtsi
+@@ -401,6 +401,18 @@
+ 			reg = <0x01700000 0x100>;
+ 		};
+ 
++		crypto: crypto@1c02000 {
++			compatible = "allwinner,sun9i-a80-crypto";
++			reg = <0x01c02000 0x1000>;
++			interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "ce_ns";
++			resets = <&ccu RST_BUS_SS>;
++			reset-names = "ahb";
++			clocks = <&ccu CLK_BUS_SS>, <&ccu CLK_SS>;
++			clock-names = "ahb", "mod";
++		};
++
++
+ 		mmc0: mmc@1c0f000 {
+ 			compatible = "allwinner,sun9i-a80-mmc";
+ 			reg = <0x01c0f000 0x1000>;
+-- 
+2.20.1
+
