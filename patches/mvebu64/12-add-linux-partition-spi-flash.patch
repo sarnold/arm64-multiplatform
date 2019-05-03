@@ -1,0 +1,31 @@
+From 3c0dbcaa19e16c4d5c1783487a0a7d1adb9b9267 Mon Sep 17 00:00:00 2001
+From: Steve Arnold <nerdboy@gentoo.org>
+Date: Fri, 3 May 2019 14:49:42 -0700
+Subject: [PATCH] arm64 dts espressobin: add linux spi flash partition (rebase
+ armbian)
+
+Signed-off-by: Steve Arnold <nerdboy@gentoo.org>
+---
+ arch/arm64/boot/dts/marvell/armada-3720-espressobin.dts | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dts
+index 6be019e1888e..753d519ea43d 100644
+--- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dts
++++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dts
+@@ -113,6 +113,12 @@
+ 				label = "ubootenv";
+ 				reg = <0x180000 0x10000>;
+ 			};
++			
++			partition@190000 {
++				label = "Linux";
++				reg = <0x190000 0xDF0000>;
++			}; 
++			
+ 		};
+ 	};
+ };
+-- 
+2.20.1
+

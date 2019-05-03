@@ -158,6 +158,26 @@ meson64 () {
 	${git} "${DIR}/patches/meson64/0023-drm-meson-Fix-an-Alpha-Primary-Plane-bug-on-Meson-GX.patch"
 }
 
+mvebu64 () {
+	echo "dir: mvebu64"
+	${git} "${DIR}/patches/mvebu64/0007-arm64-dts-marvell-armada37xx-Add-eth0-alias.patch"
+	${git} "${DIR}/patches/mvebu64/12-add-linux-partition-spi-flash.patch"
+	${git} "${DIR}/patches/mvebu64/2001-clk_mvebu_armada-37xx-tbg_Switch_to_clk_get_and_balance_it_in_probe.patch"
+	${git} "${DIR}/patches/mvebu64/2002-clk_mvebu_armada-37xx-periph_save_the_IP_base_address_in_the_driver_data.patch"
+	${git} "${DIR}/patches/mvebu64/2003-clk_mvebu_armada-37xx-periph_add_suspend_resume_support.patch"
+	${git} "${DIR}/patches/mvebu64/armada-3720-espressobin.dts.patch"
+	${git} "${DIR}/patches/mvebu64/dvbskys960-fix.patch"
+	${git} "${DIR}/patches/mvebu64/enable_ath10_cards.patch"
+	${git} "${DIR}/patches/mvebu64/fix_problem_with_cpu_scaling_not_working.patch"
+	${git} "${DIR}/patches/mvebu64/general-aufs4.19-20181029.patch"
+	${git} "${DIR}/patches/mvebu64/general-increasing_DMA_block_memory_allocation_to_2048.patch"
+	${git} "${DIR}/patches/mvebu64/general-packaging-4.19-next.patch"
+	${git} "${DIR}/patches/mvebu64/spi-nor.c.patch"
+	${git} "${DIR}/patches/mvebu64/unlock_atheros_regulatory_restrictions.patch"
+	${git} "${DIR}/patches/mvebu64/wifi-2001-01-rtl8188eu-kconfig-makefile.patch.disabled"
+	${git} "${DIR}/patches/mvebu64/wifi-2002-02-rtl8188eu.patch.disabled"
+}
+
 usb_phy () {
 	echo "dir: usb_phy"
 	${git} "${DIR}/patches/meson64/0001-ARM64-dts-meson-gxbb-odroidc2-Fix-usb-phy-reset-warning.patch"
@@ -187,8 +207,9 @@ rockchip () {
 #rt
 #local_patch
 #meson64
-#pine64
+mvebu64
 usb_phy
+#pine64
 #drivers
 #rockchip
 
