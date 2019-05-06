@@ -1,6 +1,19 @@
-diff --git linux-4.18.7/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dts
-index 3ab25ad40..0f99e751c 100644
---- linux-4.18.7/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dts
+From fd3b69b2b69e7f6d72769937d4fc99e74fe1e883 Mon Sep 17 00:00:00 2001
+From: Steve Arnold <nerdboy@gentoo.org>
+Date: Fri, 3 May 2019 17:21:11 -0700
+Subject: [PATCH] ARM64 dts marvell espressobin: set spi-flash compatible to
+ generic
+
+* rebase of armbian armada-3720-espressobin.dts.patch
+
+Signed-off-by: Steve Arnold <nerdboy@gentoo.org>
+---
+ .../dts/marvell/armada-3720-espressobin.dts   | 25 ++++++++++++++++---
+ 1 file changed, 21 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dts
+index 7528adf81b9c..804b112412a7 100644
+--- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dts
 +++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dts
 @@ -41,6 +41,15 @@
  			  3300000 0x0>;
@@ -18,7 +31,7 @@ index 3ab25ad40..0f99e751c 100644
  };
  
  /* J9 */
-@@ -68,9 +77,17 @@
+@@ -95,9 +104,17 @@
  
  	flash@0 {
  		reg = <0>;
@@ -37,7 +50,7 @@ index 3ab25ad40..0f99e751c 100644
  
  		partitions {
  			compatible = "fixed-partitions";
-@@ -79,12 +96,12 @@
+@@ -106,12 +123,12 @@
  
  			partition@0 {
  				label = "uboot";
@@ -51,5 +64,8 @@ index 3ab25ad40..0f99e751c 100644
 -				reg = <0x180000 0x10000>;
 +				reg = <0x3f0000 0x10000>;
  			};
- 		};
- 	};
+ 
+ 			partition@190000 {
+-- 
+2.20.1
+

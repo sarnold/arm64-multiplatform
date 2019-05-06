@@ -1,0 +1,28 @@
+From 0cdf018b1110c516f35989ab42cac33986a5dbc4 Mon Sep 17 00:00:00 2001
+From: Steve Arnold <nerdboy@gentoo.org>
+Date: Fri, 3 May 2019 17:43:24 -0700
+Subject: [PATCH] arch/arm/mm/dma-mapping.c: set DEFAULT_DMA_COHERENT_POOL_SIZE
+ to 2M
+
+* rebase of armbian increasing_DMA_block_memory_allocation_to_2048
+Signed-off-by: Steve Arnold <nerdboy@gentoo.org>
+---
+ arch/arm/mm/dma-mapping.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm/mm/dma-mapping.c b/arch/arm/mm/dma-mapping.c
+index 43f46aa7ef33..e1c69796bc08 100644
+--- a/arch/arm/mm/dma-mapping.c
++++ b/arch/arm/mm/dma-mapping.c
+@@ -375,7 +375,7 @@ static void __dma_free_remap(void *cpu_addr, size_t size)
+ 			VM_ARM_DMA_CONSISTENT | VM_USERMAP);
+ }
+ 
+-#define DEFAULT_DMA_COHERENT_POOL_SIZE	SZ_256K
++#define DEFAULT_DMA_COHERENT_POOL_SIZE	SZ_2M
+ static struct gen_pool *atomic_pool __ro_after_init;
+ 
+ static size_t atomic_pool_size __initdata = DEFAULT_DMA_COHERENT_POOL_SIZE;
+-- 
+2.20.1
+

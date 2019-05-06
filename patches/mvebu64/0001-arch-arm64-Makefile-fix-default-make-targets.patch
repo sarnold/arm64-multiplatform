@@ -1,0 +1,30 @@
+From 4d0d9752ef870f913419f72aaee7873e0b3c9276 Mon Sep 17 00:00:00 2001
+From: Steve Arnold <nerdboy@gentoo.org>
+Date: Fri, 3 May 2019 17:54:21 -0700
+Subject: [PATCH] arch/arm64/Makefile: fix default make targets
+
+Signed-off-by: Steve Arnold <nerdboy@gentoo.org>
+---
+ arch/arm64/Makefile | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/Makefile b/arch/arm64/Makefile
+index b025304bde46..61cf396efe46 100644
+--- a/arch/arm64/Makefile
++++ b/arch/arm64/Makefile
+@@ -131,9 +131,10 @@ core-$(CONFIG_EFI_STUB) += $(objtree)/drivers/firmware/efi/libstub/lib.a
+ 
+ # Default target when executing plain make
+ boot		:= arch/arm64/boot
+-KBUILD_IMAGE	:= $(boot)/Image.gz
++KBUILD_IMAGE	:= $(boot)/Image
++KBUILD_DTBS	:= dtbs
+ 
+-all:	Image.gz
++all:	Image.gz $(KBUILD_DTBS)
+ 
+ 
+ Image: vmlinux
+-- 
+2.20.1
+
