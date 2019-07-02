@@ -166,9 +166,9 @@ mvebu64 () {
 #	${git} "${DIR}/patches/mvebu64/2002-clk_mvebu_armada-37xx-periph_save_the_IP_base_address_in_the_driver_data.patch"
 #	${git} "${DIR}/patches/mvebu64/2003-clk_mvebu_armada-37xx-periph_add_suspend_resume_support.patch"
 	${git} "${DIR}/patches/mvebu64/0001-ARM64-dts-marvell-espressobin-set-spi-flash-compatib.patch"
-	${git} "${DIR}/patches/mvebu64/dvbskys960-fix.patch"
+#	${git} "${DIR}/patches/mvebu64/dvbskys960-fix.patch"
 	${git} "${DIR}/patches/mvebu64/0001-enable-GEN1-ath10_cards-armbian-rebase.patch"
-	${git} "${DIR}/patches/mvebu64/fix_problem_with_cpu_scaling_not_working.patch"
+#	${git} "${DIR}/patches/mvebu64/fix_problem_with_cpu_scaling_not_working.patch"
 #	${git} "${DIR}/patches/mvebu64/general-aufs4.19-20181029.patch"
 	${git} "${DIR}/patches/mvebu64/0001-arch-arm-mm-dma-mapping.c-set-DEFAULT_DMA_COHERENT_P.patch"
 #	${git} "${DIR}/patches/mvebu64/0001-arch-arm64-Makefile-fix-default-make-targets.patch"
@@ -184,8 +184,9 @@ usb_phy () {
 
 pine64 () {
 	echo "dir: pine64"
-	${git} "${DIR}/patches/pine64/0003-net-stmmac-dwmac-sun8i-support-RGMII-modes-with-PHY-.patch"
-	${git} "${DIR}/patches/pine64/0004-arm64-allwinner-a64-disable-the-RTL8211E-internal-RX.patch"
+	${git} "${DIR}/patches/pine64/0001-ARCH-arm64-dts-sun50i-a64-enable-pinebook-backlight.patch"
+#	${git} "${DIR}/patches/pine64/0003-net-stmmac-dwmac-sun8i-support-RGMII-modes-with-PHY-.patch"
+#	${git} "${DIR}/patches/pine64/0004-arm64-allwinner-a64-disable-the-RTL8211E-internal-RX.patch"
 }
 
 drivers () {
@@ -207,7 +208,7 @@ rockchip () {
 #meson64
 mvebu64
 usb_phy
-#pine64
+pine64
 #drivers
 #rockchip
 
