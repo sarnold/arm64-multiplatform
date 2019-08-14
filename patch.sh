@@ -103,6 +103,23 @@ local_patch () {
 	${git} "${DIR}/patches/dir/0001-patch.patch"
 }
 
+drivers () {
+	echo "dir: drivers"
+	${git} "${DIR}/patches/drivers/sun8i-ce/0001-crypto-Add-allwinner-subdirectory.patch"
+	${git} "${DIR}/patches/drivers/sun8i-ce/0002-crypto-Add-Allwinner-sun8i-ce-Crypto-Engine.patch"
+	${git} "${DIR}/patches/drivers/sun8i-ce/0003-dt-bindings-crypto-Add-DT-bindings-documentation-for.patch"
+	${git} "${DIR}/patches/drivers/sun8i-ce/0004-ARM-dts-sun8i-r40-add-crypto-engine-node.patch"
+	${git} "${DIR}/patches/drivers/sun8i-ce/0005-ARM-dts-sun8i-h3-Add-Crypto-Engine-node.patch"
+	${git} "${DIR}/patches/drivers/sun8i-ce/0006-ARM64-dts-allwinner-sun50i-Add-Crypto-Engine-node-on.patch"
+	${git} "${DIR}/patches/drivers/sun8i-ce/0007-ARM64-dts-allwinner-sun50i-Add-crypto-engine-node-on.patch"
+	${git} "${DIR}/patches/drivers/sun8i-ce/0008-ARM64-dts-allwinner-sun50i-Add-Crypto-Engine-node-on.patch"
+	${git} "${DIR}/patches/drivers/sun8i-ce/0009-sunxi_defconfig-add-new-crypto-options.patch"
+	${git} "${DIR}/patches/drivers/sun8i-ce/0010-crypto-Add-Allwinner-sun8i-ss-cryptographic-offloade.patch"
+	${git} "${DIR}/patches/drivers/sun8i-ce/0011-dt-bindings-crypto-Add-DT-bindings-documentation-for.patch"
+	${git} "${DIR}/patches/drivers/sun8i-ce/0012-ARM-dts-sun8i-a83t-Add-Security-System-node.patch"
+	${git} "${DIR}/patches/drivers/sun8i-ce/0013-ARM-dts-sun9i-a80-Add-Security-System-node.patch"
+}
+
 usb_phy () {
 	echo "dir: usb_phy"
 	${git} "${DIR}/patches/meson64/0001-ARM64-dts-meson-gxbb-odroidc2-Fix-usb-phy-reset-warning.patch"
@@ -119,7 +136,9 @@ pine64 () {
 #external_git
 #rt
 #local_patch
+drivers
 usb_phy
+pine64
 
 packaging () {
 	echo "dir: packaging"

@@ -1,0 +1,26 @@
+From 5b06d33e1f4b0bed4704ba67590dbccdad5460fc Mon Sep 17 00:00:00 2001
+From: Corentin Labbe <clabbe.montjoie@gmail.com>
+Date: Thu, 17 Jan 2019 07:13:28 +0100
+Subject: [PATCH 09/13] sunxi_defconfig: add new crypto options
+
+This patch adds the new allwinner crypto configs to sunxi_defconfig
+
+Signed-off-by: Corentin Labbe <clabbe.montjoie@gmail.com>
+---
+ arch/arm/configs/sunxi_defconfig | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/arch/arm/configs/sunxi_defconfig b/arch/arm/configs/sunxi_defconfig
+index df433abfcb..d0ab8ba771 100644
+--- a/arch/arm/configs/sunxi_defconfig
++++ b/arch/arm/configs/sunxi_defconfig
+@@ -150,4 +150,6 @@ CONFIG_NLS_CODEPAGE_437=y
+ CONFIG_NLS_ISO8859_1=y
+ CONFIG_PRINTK_TIME=y
+ CONFIG_DEBUG_FS=y
++CONFIG_CRYPTO_DEV_ALLWINNER=y
++CONFIG_CRYPTO_DEV_SUN8I_CE=y
+ CONFIG_CRYPTO_DEV_SUN4I_SS=y
+-- 
+2.20.1
+

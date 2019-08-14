@@ -1,0 +1,36 @@
+From fb23bb1d649c29d308d5febfe28e10f2fad07877 Mon Sep 17 00:00:00 2001
+From: Corentin Labbe <clabbe.montjoie@gmail.com>
+Date: Sat, 9 Feb 2019 20:19:14 +0100
+Subject: [PATCH 13/13] ARM: dts: sun9i: a80: Add Security System node
+
+This patchs the node for sun8i-ss which is availlable on the A80.
+
+Signed-off-by: Corentin Labbe <clabbe.montjoie@gmail.com>
+---
+ arch/arm/boot/dts/sun9i-a80.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/arch/arm/boot/dts/sun9i-a80.dtsi b/arch/arm/boot/dts/sun9i-a80.dtsi
+index 310cd972ee..8457243584 100644
+--- a/arch/arm/boot/dts/sun9i-a80.dtsi
++++ b/arch/arm/boot/dts/sun9i-a80.dtsi
+@@ -448,6 +448,16 @@
+ 			reg = <0x01700000 0x100>;
+ 		};
+ 
++		crypto: crypto@1c02000 {
++			compatible = "allwinner,sun9i-a80-crypto";
++			reg = <0x01c02000 0x1000>;
++			interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
++			resets = <&ccu RST_BUS_SS>;
++			reset-names = "ahb";
++			clocks = <&ccu CLK_BUS_SS>, <&ccu CLK_SS>;
++			clock-names = "ahb", "mod";
++		};
++
+ 		mmc0: mmc@1c0f000 {
+ 			compatible = "allwinner,sun9i-a80-mmc";
+ 			reg = <0x01c0f000 0x1000>;
+-- 
+2.20.1
+
