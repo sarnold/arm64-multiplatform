@@ -33,8 +33,8 @@ toolchain="gcc_arm_aarch64_gnu_8"
 
 #Kernel/Build
 KERNEL_REL=5.2
-KERNEL_TAG=${KERNEL_REL}.8
-BUILD=${build_prefix}1
+KERNEL_TAG=${KERNEL_REL}.9
+BUILD=${build_prefix}2
 kernel_rt=".X-rtY"
 
 #v4.X-rcX + upto SHA

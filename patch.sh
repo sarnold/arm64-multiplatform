@@ -34,7 +34,7 @@ if [ ! "x${git_no_edit}" = "x" ] ; then
 	git_opts="--no-edit"
 fi
 
-git="git am --whitespace=fix"
+git="git am --3way --whitespace=fix"
 #git_patchset=""
 #git_opts
 
@@ -103,8 +103,13 @@ local_patch () {
 	${git} "${DIR}/patches/dir/0001-patch.patch"
 }
 
+toolchain () {
+	echo "dir: toolchain"
+	${git} "${DIR}/patches/toolchain/0001-arch-arm64-kernel-vdso-Makefile-fix-gold-linker-fail.patch"
+}
+
 drivers () {
-	echo "dir: drivers"
+	echo "dir: drivers/sun8i-ce"
 	${git} "${DIR}/patches/drivers/sun8i-ce/0001-crypto-Add-allwinner-subdirectory.patch"
 	${git} "${DIR}/patches/drivers/sun8i-ce/0002-crypto-Add-Allwinner-sun8i-ce-Crypto-Engine.patch"
 	${git} "${DIR}/patches/drivers/sun8i-ce/0003-dt-bindings-crypto-Add-DT-bindings-documentation-for.patch"
@@ -120,25 +125,52 @@ drivers () {
 	${git} "${DIR}/patches/drivers/sun8i-ce/0013-ARM-dts-sun9i-a80-Add-Security-System-node.patch"
 }
 
+rtl8723cs () {
+	echo "dir: drivers/rtl8723cs"
+	${git} "${DIR}/patches/drivers/rtl8723cs/0015-drivers-net-wireless-realtek-add-rtl8723cs-support-f.patch"
+	${git} "${DIR}/patches/drivers/rtl8723cs/0016-drivers-net-wireless-realtek-add-rtl8723cs-support-f.patch"
+	${git} "${DIR}/patches/drivers/rtl8723cs/0030-rtl8723cs-add-use-of-ktime_get_boottime_ts64-for-ker.patch"
+}
+
 usb_phy () {
 	echo "dir: usb_phy"
 	${git} "${DIR}/patches/meson64/0001-ARM64-dts-meson-gxbb-odroidc2-Fix-usb-phy-reset-warning.patch"
 	${git} "${DIR}/patches/meson64/0002-ARM64-dts-meson-gxbb-odroidc2-Fix-usb-phy-regulator-power-failed-warning.patch"
 }
 
-pine64 () {
-	echo "dir: pine64"
-	${git} "${DIR}/patches/pine64/0001-ARCH-arm64-dts-sun50i-a64-enable-pinebook-backlight.patch"
-#	${git} "${DIR}/patches/pine64/0003-net-stmmac-dwmac-sun8i-support-RGMII-modes-with-PHY-.patch"
-#	${git} "${DIR}/patches/pine64/0004-arm64-allwinner-a64-disable-the-RTL8211E-internal-RX.patch"
+allwinner () {
+	echo "dir: allwinner"
+	${git} "${DIR}/patches/allwinner/0020-hdmi-audio-fixup.patch"
+	${git} "${DIR}/patches/allwinner/0021-Bluetooth-Add-new-quirk-for-broken-local-ext-feature.patch"
+	${git} "${DIR}/patches/allwinner/0022-Bluetooth-hci_h5-Add-support-for-reset-GPIO.patch"
+	${git} "${DIR}/patches/allwinner/0023-dt-bindings-net-bluetooth-Add-rtl8723bs-bluetooth.patch"
+	${git} "${DIR}/patches/allwinner/0024-Bluetooth-hci_h5-Add-support-for-binding-RTL8723BS-w.patch"
+	${git} "${DIR}/patches/allwinner/0025-Bluetooth-btrtl-add-support-for-the-RTL8723CS.patch"
+	${git} "${DIR}/patches/allwinner/0026-arm64-allwinner-a64-enable-Bluetooth-On-Pinebook.patch"
+	${git} "${DIR}/patches/allwinner/0027-arm64-allwinner-a64-enable-Bluetooth-On-Pine64.patch"
+	${git} "${DIR}/patches/allwinner/0028-arm64-allwinner-a64-enable-Bluetooth-On-SoPine-baseb.patch"
+	${git} "${DIR}/patches/allwinner/0029-si2168-fix-cmd-timeout.patch"
+	${git} "${DIR}/patches/allwinner/0031-dts-a64-ths.patch"
+	${git} "${DIR}/patches/allwinner/0032-a64-dvfs-wip.patch"
+}
+
+pinebook () {
+	echo "dir: pinebook"
+	${git} "${DIR}/patches/pinebook/0001-ARCH-arm64-dts-sun50i-a64-enable-pinebook-backlight.patch"
+	${git} "${DIR}/patches/pinebook/0001-arm64-dts-allwinner-a64-Enable-HDMI-output-on-A64-bo.patch"
+	${git} "${DIR}/patches/pinebook/0002-arm64-allwinner-a64-enable-ANX6345-bridge-on-Pineboo.patch"
+	${git} "${DIR}/patches/pinebook/0131-arm64-allwinner-a64-add-pinmux-for-RGB666-LCD.patch"
 }
 
 #external_git
 #rt
 #local_patch
+toolchain
 drivers
+rtl8723cs
 usb_phy
-pine64
+allwinner
+pinebook
 
 packaging () {
 	echo "dir: packaging"
