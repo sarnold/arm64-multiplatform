@@ -159,13 +159,12 @@ pinebook () {
 	${git} "${DIR}/patches/pinebook/0001-ARCH-arm64-dts-sun50i-a64-enable-pinebook-backlight.patch"
 	${git} "${DIR}/patches/pinebook/0001-arm64-dts-allwinner-a64-Enable-HDMI-output-on-A64-bo.patch"
 	${git} "${DIR}/patches/pinebook/0002-arm64-allwinner-a64-enable-ANX6345-bridge-on-Pineboo.patch"
-	${git} "${DIR}/patches/pinebook/0131-arm64-allwinner-a64-add-pinmux-for-RGB666-LCD.patch"
 }
 
 #external_git
 #rt
 #local_patch
-toolchain
+#toolchain
 drivers
 rtl8723cs
 usb_phy
