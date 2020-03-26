@@ -1,0 +1,82 @@
+From 1c251bbd0fe1a62ebbf42656e714c9302478dcd3 Mon Sep 17 00:00:00 2001
+From: Steve Arnold <nerdboy@gentoo.org>
+Date: Sat, 12 Oct 2019 19:53:06 -0700
+Subject: [PATCH] drm/mediatek: cleanup mtk_drm_fbdev based on patchwork
+ comments
+
+Signed-off-by: Steve Arnold <nerdboy@gentoo.org>
+---
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c   | 1 +
+ drivers/gpu/drm/mediatek/mtk_drm_fbdev.c | 5 ++---
+ drivers/gpu/drm/mediatek/mtk_drm_fbdev.h | 4 ++--
+ 3 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+index 5dcd6aba82c0..090e2b9189db 100644
+--- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
++++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+@@ -338,6 +338,7 @@ static void mtk_drm_kms_deinit(struct drm_device *drm)
+ {
+ 	struct mtk_drm_private *private = drm->dev_private;
+ 
++	mtk_fbdev_fini(drm);
+ 	drm_kms_helper_poll_fini(drm);
+ 	drm_atomic_helper_shutdown(drm);
+ 
+diff --git a/drivers/gpu/drm/mediatek/mtk_drm_fbdev.c b/drivers/gpu/drm/mediatek/mtk_drm_fbdev.c
+index 919364736a53..e19790017a86 100644
+--- a/drivers/gpu/drm/mediatek/mtk_drm_fbdev.c
++++ b/drivers/gpu/drm/mediatek/mtk_drm_fbdev.c
+@@ -18,12 +18,12 @@
+ 
+ #include "mtk_drm_drv.h"
+ #include "mtk_drm_fb.h"
++#include "mtk_drm_fbdev.h"
+ #include "mtk_drm_gem.h"
+ 
+ #define to_drm_private(x) \
+ 		container_of(x, struct mtk_drm_private, fb_helper)
+ 
+-#if 1
+ static int mtk_drm_fbdev_mmap(struct fb_info *info, struct vm_area_struct *vma)
+ {
+ 	struct drm_fb_helper *helper = info->par;
+@@ -31,7 +31,6 @@ static int mtk_drm_fbdev_mmap(struct fb_info *info, struct vm_area_struct *vma)
+ 
+ 	return mtk_drm_gem_mmap_buf(private->fbdev_bo, vma);
+ }
+-#endif
+ 
+ static struct fb_ops mtk_fbdev_ops = {
+ 	.owner = THIS_MODULE,
+@@ -104,7 +103,7 @@ static int mtk_fbdev_probe(struct drm_fb_helper *helper,
+ 	offset += info->var.yoffset * fb->pitches[0];
+ 
+ 	dev->mode_config.fb_base = 0;
+-	info->screen_base = mtk_gem->kvaddr + offset;
++	info->screen_buffer = mtk_gem->kvaddr + offset;
+ 	info->screen_size = size;
+ 	info->fix.smem_len = size;
+ 
+diff --git a/drivers/gpu/drm/mediatek/mtk_drm_fbdev.h b/drivers/gpu/drm/mediatek/mtk_drm_fbdev.h
+index f3e09492aa47..9a72e21217e6 100644
+--- a/drivers/gpu/drm/mediatek/mtk_drm_fbdev.h
++++ b/drivers/gpu/drm/mediatek/mtk_drm_fbdev.h
+@@ -18,12 +18,12 @@
+ int mtk_fbdev_init(struct drm_device *dev);
+ void mtk_fbdev_fini(struct drm_device *dev);
+ #else
+-int mtk_fbdev_init(struct drm_device *dev)
++static inline int mtk_fbdev_init(struct drm_device *dev)
+ {
+ 	return 0;
+ }
+ 
+-void mtk_fbdev_fini(struct drm_device *dev)
++static inline void mtk_fbdev_fini(struct drm_device *dev)
+ {
+ 
+ }
+-- 
+2.20.1
+

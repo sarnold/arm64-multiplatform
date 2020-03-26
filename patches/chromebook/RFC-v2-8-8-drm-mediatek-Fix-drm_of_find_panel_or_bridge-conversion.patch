@@ -1,0 +1,129 @@
+From patchwork Mon Oct 16 15:31:40 2017
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-Patchwork-Submitter: Ulrich Hecht <ulrich.hecht+renesas@gmail.com>
+X-Patchwork-Id: 10010959
+Return-Path: <dri-devel-bounces@lists.freedesktop.org>
+Received: from mail.wl.linuxfoundation.org (pdx-wl-mail.web.codeaurora.org
+	[172.30.200.125])
+	by pdx-korg-patchwork.web.codeaurora.org (Postfix) with ESMTP id
+	CE26560211 for <patchwork-dri-devel@patchwork.kernel.org>;
+	Tue, 17 Oct 2017 07:35:27 +0000 (UTC)
+Received: from mail.wl.linuxfoundation.org (localhost [127.0.0.1])
+	by mail.wl.linuxfoundation.org (Postfix) with ESMTP id C05DF286C2
+	for <patchwork-dri-devel@patchwork.kernel.org>;
+	Tue, 17 Oct 2017 07:35:27 +0000 (UTC)
+Received: by mail.wl.linuxfoundation.org (Postfix, from userid 486)
+	id B4E1128756; Tue, 17 Oct 2017 07:35:27 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	pdx-wl-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-4.1 required=2.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED, FREEMAIL_FROM, RCVD_IN_DNSWL_MED,
+	T_DKIM_INVALID autolearn=ham version=3.3.1
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256
+	bits)) (No client certificate requested)
+	by mail.wl.linuxfoundation.org (Postfix) with ESMTPS id 84510286C2
+	for <patchwork-dri-devel@patchwork.kernel.org>;
+	Tue, 17 Oct 2017 07:35:27 +0000 (UTC)
+Received: from gabe.freedesktop.org (localhost [127.0.0.1])
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAFEF6E593;
+	Tue, 17 Oct 2017 07:35:20 +0000 (UTC)
+X-Original-To: dri-devel@lists.freedesktop.org
+Delivered-To: dri-devel@lists.freedesktop.org
+Received: from mail-wm0-x242.google.com (mail-wm0-x242.google.com
+	[IPv6:2a00:1450:400c:c09::242])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id B233C6E497
+	for <dri-devel@lists.freedesktop.org>;
+	Mon, 16 Oct 2017 15:32:05 +0000 (UTC)
+Received: by mail-wm0-x242.google.com with SMTP id i124so4587667wmf.3
+	for <dri-devel@lists.freedesktop.org>;
+	Mon, 16 Oct 2017 08:32:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=sender:from:to:cc:subject:date:message-id:in-reply-to:references;
+	bh=xV+dEZ5nvBysegn5b57YCuFBZBLNc5c2cP3kA7SDS3Y=;
+	b=S86ApdhsCXcgQJwR6GnRRbmO9NjzwMjEOWwOAv4wRcmK6vKLpvcHeULjLRmV8mFydU
+	rmkmtyPcp/dwYE1+avmp7wS0eSIvYfKQcLyJHWqMkzDGzxUsqv+GO+R4aWON0IAXiZRt
+	lMj3Sh+6eMFhTFH+azA6SlUXqc/dzdtgQ6fvNzbnSWfmAVNhm8ID+pd8BDN2s3iO4aR1
+	LGPhDJZOI/xhOdhqbkOn9WlFB1CkOdUSa/rJDDVrsAsqLUzwZ5XnDArcoi8QGhlfWjVb
+	cTurzVXuD60cupGhfW9VPa8qugznXbeRywXmPcT2FQ2yWEEnZ+jqBKk90MTHdqqArxk1
+	b9Rg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+	:in-reply-to:references;
+	bh=xV+dEZ5nvBysegn5b57YCuFBZBLNc5c2cP3kA7SDS3Y=;
+	b=krJhraL/udPfBzpMvexBaFRHpMZuj3Pm69sNfd14uZJcg7x28c1XzNlwcEqAZ6VGe5
+	/QQ/r4tOrNVEhiTHhLnxmcFdTjVwX/xhRdxT2mYjJfVAqSZxVsnmOygyiuP0AZM1RQuN
+	A2dA2fDwbvKXMRxRLn0pBxn9YtuZdIt/6IT96WsOGjcLHWnYToBkqd4dN5abOmX0piSx
+	itugRUTjDzJ9O6CwzWuCJnjhtttUrPY3gwCHJT847gZq8VlyGl0ljVwhPqthxj60Jg4B
+	8niSFF2GEzIxpufbpjXcZVFqClRTaaHarPuNR7OY1S2iSFdgqP64WMAfC5/nvc2DLjaN
+	w4Ag==
+X-Gm-Message-State: AMCzsaWY1N5KIfndJSRtcf9RqsjwZNoTuI/S9uFGW2eOmmGB7HohVLx8
+	cUV4B/e9u3bqH+cWegDm4w==
+X-Google-Smtp-Source: 
+ ABhQp+QANd5Hknxg5jxBTR1drgVI1WkGekflPdWmKpJkzkcZzsDFWzZCCePk9Ve7Pek0b+yXHh9WUA==
+X-Received: by 10.28.100.3 with SMTP id y3mr1129140wmb.69.1508167924400;
+	Mon, 16 Oct 2017 08:32:04 -0700 (PDT)
+Received: from groucho.site (ipbcc0ce42.dynamic.kabel-deutschland.de.
+	[188.192.206.66]) by smtp.gmail.com with ESMTPSA id
+	v2sm6897751wmf.40.2017.10.16.08.32.03
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Mon, 16 Oct 2017 08:32:03 -0700 (PDT)
+From: Ulrich Hecht <ulrich.hecht+renesas@gmail.com>
+To: linux-mediatek@lists.infradead.org
+Subject: [RFC v2 8/8] drm: mediatek: Fix drm_of_find_panel_or_bridge
+	conversion
+Date: Mon, 16 Oct 2017 17:31:40 +0200
+Message-Id: <1508167900-27415-9-git-send-email-ulrich.hecht+renesas@gmail.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: 
+ <1508167900-27415-1-git-send-email-ulrich.hecht+renesas@gmail.com>
+References: <1508167900-27415-1-git-send-email-ulrich.hecht+renesas@gmail.com>
+X-Mailman-Approved-At: Tue, 17 Oct 2017 07:35:19 +0000
+Cc: jacopo@jmondi.org, magnus.damm@gmail.com, dri-devel@lists.freedesktop.org,
+	Ulrich Hecht <ulrich.hecht+renesas@gmail.com>,
+	laurent.pinchart@ideasonboard.com, robin.murphy@arm.com,
+	linux-arm-kernel@lists.infradead.org
+X-BeenThere: dri-devel@lists.freedesktop.org
+X-Mailman-Version: 2.1.18
+Precedence: list
+List-Id: Direct Rendering Infrastructure - Development
+	<dri-devel.lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+	<mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+MIME-Version: 1.0
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+X-Virus-Scanned: ClamAV using ClamSMTP
+
+The port value should be 1 instead of 0; fixes DSI initialization on
+MT8173 "Elm".
+
+Fixes: ebc944613567 ("drm: convert drivers to use drm_of_find_panel_or_bridge")
+Signed-off-by: Ulrich Hecht <ulrich.hecht+renesas@gmail.com>
+---
+ drivers/gpu/drm/mediatek/mtk_dsi.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediatek/mtk_dsi.c
+index 7e5e24c..e5ec581 100644
+--- a/drivers/gpu/drm/mediatek/mtk_dsi.c
++++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
+@@ -1105,7 +1105,7 @@ static int mtk_dsi_probe(struct platform_device *pdev)
+ 	dsi->host.ops = &mtk_dsi_ops;
+ 	dsi->host.dev = dev;
+ 
+-	ret = drm_of_find_panel_or_bridge(dev->of_node, 0, 0,
++	ret = drm_of_find_panel_or_bridge(dev->of_node, 1, 0,
+ 					  &dsi->panel, &dsi->bridge);
+ 	if (ret)
+ 		return ret;

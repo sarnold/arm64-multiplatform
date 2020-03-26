@@ -108,6 +108,13 @@ toolchain () {
 	${git} "${DIR}/patches/toolchain/0001-arch-arm64-kernel-vdso-Makefile-fix-gold-linker-fail.patch"
 }
 
+bootsplash () {
+        echo "dir: bootsplash"
+	${git} "${DIR}/patches/bootsplash/0001-linux-stable-Add-kernel-bootsplash-patches.patch"
+	${git} "${DIR}/patches/bootsplash/0002-bootsplash-add-gentoo-logo-build-script.patch"
+	${git} "${DIR}/patches/bootsplash/0003-tools-bootsplash-Makefile-fix-include-paths.patch"
+}
+
 drivers () {
 	echo "dir: drivers/sun8i-ce"
 	${git} "${DIR}/patches/drivers/sun8i-ce/0001-crypto-Add-allwinner-subdirectory.patch"
@@ -161,15 +168,34 @@ pinebook () {
 	${git} "${DIR}/patches/pinebook/0002-arm64-allwinner-a64-enable-ANX6345-bridge-on-Pineboo.patch"
 }
 
+chromebook () {
+	echo "dir: chromebook"
+	${git} "${DIR}/patches/chromebook/0001-drm-bridge-GPIO-controlled-display-multiplexer-drive.patch"
+#	${git} "${DIR}/patches/chromebook/RFC-v2-1-8-drm-bridge-GPIO-controlled-display-multiplexer-driver.patch"
+	${git} "${DIR}/patches/chromebook/RFC-v2-2-8-platform-chrome-ChromeOS-firmware-interface-driver.patch"
+	${git} "${DIR}/patches/chromebook/0001-drm-bridge-Parade-PS8640-MIPI-DSI-eDP-converter-driv.patch"
+#	${git} "${DIR}/patches/chromebook/RFC-v2-3-8-drm-bridge-Parade-PS8640-MIPI-DSI---eDP-converter-driver.patch"
+	${git} "${DIR}/patches/chromebook/RFC-v2-4-8-drm-bridge-Analogix-ANX7688-HDMI---DP-bridge-driver.patch"
+	${git} "${DIR}/patches/chromebook/0001-arm64-dts-mediatek-Add-Elm-Rev.-3-device-tree.patch"
+#	${git} "${DIR}/patches/chromebook/RFC-v2-5-8-arm64-dts-mediatek-Add-Elm-Rev.-3-device-tree.patch"
+	${git} "${DIR}/patches/chromebook/RFC-v2-6-8-hack-mediatek-get-mmsys-to-register-as-both-DRM-and-clock-device.patch"
+	${git} "${DIR}/patches/chromebook/0001-RFC-v2-7-8-drm-mediatek-Add-DRM-based-framebuffer-de.patch"
+#	${git} "${DIR}/patches/chromebook/RFC-v2-7-8-drm-mediatek-Add-DRM-based-framebuffer-device.patch"
+	${git} "${DIR}/patches/chromebook/RFC-v2-8-8-drm-mediatek-Fix-drm_of_find_panel_or_bridge-conversion.patch"
+	${git} "${DIR}/patches/chromebook/0001-drm-mediatek-cleanup-mtk_drm_fbdev-based-on-patchwor.patch"
+}
+
 #external_git
 #rt
 #local_patch
 #toolchain
+bootsplash
 drivers
-rtl8723cs
+#rtl8723cs
 usb_phy
 allwinner
 pinebook
+#chromebook
 
 packaging () {
 	echo "dir: packaging"

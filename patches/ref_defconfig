@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Linux/arm64 5.3.1 Kernel Configuration
+# Linux/arm64 5.3.7 Kernel Configuration
 #
 
 #
@@ -2463,7 +2463,6 @@ CONFIG_RTL_CARDS=m
 # CONFIG_RTL8821AE is not set
 # CONFIG_RTL8192CU is not set
 # CONFIG_RTL8XXXU is not set
-# CONFIG_RTL8723CS is not set
 # CONFIG_RTW88 is not set
 CONFIG_WLAN_VENDOR_RSI=y
 # CONFIG_RSI_91X is not set
@@ -4487,6 +4486,7 @@ CONFIG_FRAMEBUFFER_CONSOLE=y
 CONFIG_FRAMEBUFFER_CONSOLE_DETECT_PRIMARY=y
 # CONFIG_FRAMEBUFFER_CONSOLE_ROTATION is not set
 # CONFIG_FRAMEBUFFER_CONSOLE_DEFERRED_TAKEOVER is not set
+# CONFIG_BOOTSPLASH is not set
 # end of Console display driver support
 
 CONFIG_LOGO=y
@@ -5151,7 +5151,6 @@ CONFIG_USB_ISP1760_DUAL_ROLE=y
 # CONFIG_USB_EMI26 is not set
 # CONFIG_USB_ADUTUX is not set
 # CONFIG_USB_SEVSEG is not set
-# CONFIG_USB_RIO500 is not set
 # CONFIG_USB_LEGOTOWER is not set
 # CONFIG_USB_LCD is not set
 # CONFIG_USB_CYPRESS_CY7C63 is not set
@@ -5441,7 +5440,6 @@ CONFIG_RTC_DRV_RK808=m
 # CONFIG_RTC_DRV_PCF8563 is not set
 # CONFIG_RTC_DRV_PCF8583 is not set
 # CONFIG_RTC_DRV_M41T80 is not set
-# CONFIG_RTC_DRV_BD70528 is not set
 # CONFIG_RTC_DRV_BQ32K is not set
 # CONFIG_RTC_DRV_S35390A is not set
 # CONFIG_RTC_DRV_FM3130 is not set
