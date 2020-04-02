@@ -32,8 +32,8 @@ KERNEL_ARCH=arm64
 toolchain="gcc_arm_aarch64_gnu_8"
 
 #Kernel/Build
-KERNEL_REL=5.3
-KERNEL_TAG=${KERNEL_REL}.7
+KERNEL_REL=5.5
+KERNEL_TAG=${KERNEL_REL}.9
 BUILD=${build_prefix}1
 kernel_rt=".X-rtY"
 
