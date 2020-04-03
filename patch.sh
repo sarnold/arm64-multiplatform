@@ -158,7 +158,7 @@ allwinner () {
 	${git} "${DIR}/patches/allwinner/0028-arm64-allwinner-a64-enable-Bluetooth-On-SoPine-baseb.patch"
 	${git} "${DIR}/patches/allwinner/0029-si2168-fix-cmd-timeout.patch"
 	${git} "${DIR}/patches/allwinner/0031-dts-a64-ths.patch"
-	${git} "${DIR}/patches/allwinner/0032-a64-dvfs-wip.patch"
+#	${git} "${DIR}/patches/allwinner/0032-a64-dvfs-wip.patch"
 }
 
 pinebook () {
@@ -191,9 +191,9 @@ chromebook () {
 #toolchain
 bootsplash
 #drivers
-#rtl8723cs
+rtl8723cs
 #usb_phy
-#allwinner
+allwinner
 pinebook
 #chromebook
 

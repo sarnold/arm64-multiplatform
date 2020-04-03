@@ -1,8 +1,7 @@
-From 75fee170b74c56285595b4145c6e9cee20026ea1 Mon Sep 17 00:00:00 2001
+From 5f5d713c983d01b5f8339130537fe474a617cd00 Mon Sep 17 00:00:00 2001
 From: Vasily Khoruzhick <anarsoul@gmail.com>
 Date: Wed, 31 Oct 2018 20:50:09 -0700
-Subject: [PATCH 28/38] arm64: allwinner: a64: enable Bluetooth On SoPine
- baseboard
+Subject: [PATCH] arm64: allwinner: a64: enable Bluetooth On SoPine baseboard
 
 SoPine has optional RTL8723BS WiFi + BT module, BT is connected to UART1
 and uses PL4 as BT reset, PL5 as device wake GPIO, PL6 as host wake GPIO
@@ -16,11 +15,11 @@ Signed-off-by: Vasily Khoruzhick <anarsoul@gmail.com>
  1 file changed, 14 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-baseboard.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-baseboard.dts
-index e6fb9683f213..691ffad390c6 100644
+index 920103ec0046..87dd26d7857e 100644
 --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-baseboard.dts
 +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-baseboard.dts
-@@ -204,6 +204,20 @@
- 	status = "okay";
+@@ -235,6 +235,20 @@ &uart4 {
+ 	status = "disabled";
  };
  
 +&uart1 {
@@ -41,5 +40,5 @@ index e6fb9683f213..691ffad390c6 100644
  	dr_mode = "host";
  	status = "okay";
 -- 
-2.20.1
+2.26.0
 
