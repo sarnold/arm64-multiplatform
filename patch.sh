@@ -193,7 +193,7 @@ bootsplash
 #drivers
 rtl8723cs
 #usb_phy
-allwinner
+#allwinner
 pinebook
 #chromebook
 

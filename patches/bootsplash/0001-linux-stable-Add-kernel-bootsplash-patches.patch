@@ -1,8 +1,7 @@
-From 6e3a2fe21571d859e31efcdd8354d0ecca7812d9 Mon Sep 17 00:00:00 2001
+From 6333cb934f3f45881dcaeb09f859ab221f0e0ea2 Mon Sep 17 00:00:00 2001
 From: Steve Arnold <nerdboy@gentoo.org>
 Date: Fri, 1 Jun 2018 13:52:35 -0700
-Subject: [PATCH 1/6] linux-stable: Add kernel bootsplash patches and default
- gifs
+Subject: [PATCH] linux-stable: Add kernel bootsplash patches and default gifs
 
 * https://github.com/philmmanjaro/linux-bootsplash
 
@@ -403,10 +402,10 @@ index 000000000000..d4f132eca615
 +between these components ensues refactoring of old code and checking for
 +correct locking.
 diff --git a/MAINTAINERS b/MAINTAINERS
-index dce5c099f43c..bed38262ba65 100644
+index 5a5332b3591d..b9faadfa513c 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -2844,6 +2844,18 @@ S:	Supported
+@@ -3133,6 +3133,18 @@ S:	Supported
  F:	drivers/net/bonding/
  F:	include/uapi/linux/if_bonding.h
  
@@ -422,11 +421,11 @@ index dce5c099f43c..bed38262ba65 100644
 +F:	include/uapi/linux/bootsplash_file.h
 +F:	tools/bootsplash/*
 +
- BPF (Safe dynamic programs and tools)
- M:	Alexei Starovoitov <ast@kernel.org>
- M:	Daniel Borkmann <daniel@iogearbox.net>
+ BOSCH SENSORTEC BMA400 ACCELEROMETER IIO DRIVER
+ M:	Dan Robertson <dan@dlrobertson.com>
+ L:	linux-iio@vger.kernel.org
 diff --git a/drivers/tty/sysrq.c b/drivers/tty/sysrq.c
-index 1f03078ec352..482c88e52c0f 100644
+index f724962a5906..b64504103d38 100644
 --- a/drivers/tty/sysrq.c
 +++ b/drivers/tty/sysrq.c
 @@ -50,6 +50,7 @@
@@ -447,7 +446,7 @@ index 1f03078ec352..482c88e52c0f 100644
  static struct sysrq_key_op sysrq_SAK_op = {
  	.handler	= sysrq_handle_SAK,
 diff --git a/drivers/tty/vt/keyboard.c b/drivers/tty/vt/keyboard.c
-index 88312c6c92cc..3c753234169a 100644
+index 15d33fa0c925..42ce439b8e9b 100644
 --- a/drivers/tty/vt/keyboard.c
 +++ b/drivers/tty/vt/keyboard.c
 @@ -48,6 +48,8 @@
@@ -459,7 +458,7 @@ index 88312c6c92cc..3c753234169a 100644
  extern void ctrl_alt_del(void);
  
  /*
-@@ -1384,6 +1386,28 @@ static void kbd_keycode(unsigned int keycode, int down, int hw_raw)
+@@ -1385,6 +1387,28 @@ static void kbd_keycode(unsigned int keycode, int down, int hw_raw)
  	}
  #endif
  
@@ -489,7 +488,7 @@ index 88312c6c92cc..3c753234169a 100644
  		/*
  		 * This is extended medium raw mode, with keys above 127
 diff --git a/drivers/tty/vt/vt.c b/drivers/tty/vt/vt.c
-index 9646ff63e77a..6e8bfaa6afaf 100644
+index b99ac3ebb2b5..f7850bfb58ef 100644
 --- a/drivers/tty/vt/vt.c
 +++ b/drivers/tty/vt/vt.c
 @@ -105,6 +105,7 @@
@@ -500,7 +499,7 @@ index 9646ff63e77a..6e8bfaa6afaf 100644
  
  #define MAX_NR_CON_DRIVER 16
  
-@@ -4218,6 +4219,7 @@ void do_unblank_screen(int leaving_gfx)
+@@ -4305,6 +4306,7 @@ void do_unblank_screen(int leaving_gfx)
  	}
  
  	console_blanked = 0;
@@ -509,7 +508,7 @@ index 9646ff63e77a..6e8bfaa6afaf 100644
  		/* Low-level driver cannot restore -> do it ourselves */
  		update_screen(vc);
 diff --git a/drivers/video/console/Kconfig b/drivers/video/console/Kconfig
-index 787792c3d08d..0ada0af7d3b3 100644
+index 70c10ea1c38b..11cd090e2d5b 100644
 --- a/drivers/video/console/Kconfig
 +++ b/drivers/video/console/Kconfig
 @@ -161,6 +161,30 @@ config FRAMEBUFFER_CONSOLE_DEFERRED_TAKEOVER
@@ -1846,10 +1845,10 @@ index 000000000000..8c22ff92ce24
 +MODULE_DESCRIPTION("Dummy Blitting Operation");
 +MODULE_LICENSE("GPL");
 diff --git a/drivers/video/fbdev/core/fbcon.c b/drivers/video/fbdev/core/fbcon.c
-index bfa1360ec750..4190e0b30cd1 100644
+index bb6ae995c2e5..2d4e8e75861d 100644
 --- a/drivers/video/fbdev/core/fbcon.c
 +++ b/drivers/video/fbdev/core/fbcon.c
-@@ -80,6 +80,7 @@
+@@ -81,6 +81,7 @@
  #include <asm/irq.h>
  
  #include "fbcon.h"
@@ -1857,7 +1856,7 @@ index bfa1360ec750..4190e0b30cd1 100644
  
  #ifdef FBCONDEBUG
  #  define DPRINTK(fmt, args...) printk(KERN_DEBUG "%s: " fmt, __func__ , ## args)
-@@ -559,6 +560,8 @@ static int do_fbcon_takeover(int show_logo)
+@@ -585,6 +586,8 @@ static int do_fbcon_takeover(int show_logo)
  	for (i = first_fb_vc; i <= last_fb_vc; i++)
  		con2fb_map[i] = info_idx;
  
@@ -1866,7 +1865,7 @@ index bfa1360ec750..4190e0b30cd1 100644
  	err = do_take_over_console(&fb_con, first_fb_vc, last_fb_vc,
  				fbcon_is_default);
  
-@@ -679,6 +682,9 @@ static void set_blitting_type(struct vc_data *vc, struct fb_info *info)
+@@ -708,6 +711,9 @@ static void set_blitting_type(struct vc_data *vc, struct fb_info *info)
  	else {
  		fbcon_set_rotation(info);
  		fbcon_set_bitops(ops);
@@ -1876,7 +1875,7 @@ index bfa1360ec750..4190e0b30cd1 100644
  	}
  }
  
-@@ -701,6 +707,19 @@ static void set_blitting_type(struct vc_data *vc, struct fb_info *info)
+@@ -730,6 +736,19 @@ static void set_blitting_type(struct vc_data *vc, struct fb_info *info)
  	ops->p = &fb_display[vc->vc_num];
  	fbcon_set_rotation(info);
  	fbcon_set_bitops(ops);
@@ -1896,7 +1895,7 @@ index bfa1360ec750..4190e0b30cd1 100644
  }
  
  static int fbcon_invalid_charcount(struct fb_info *info, unsigned charcount)
-@@ -1351,6 +1370,16 @@ static void fbcon_cursor(struct vc_data *vc, int mode)
+@@ -1386,6 +1405,16 @@ static void fbcon_cursor(struct vc_data *vc, int mode)
  	int y;
   	int c = scr_readw((u16 *) vc->vc_pos);
  
@@ -1913,7 +1912,7 @@ index bfa1360ec750..4190e0b30cd1 100644
  	ops->cur_blink_jiffies = msecs_to_jiffies(vc->vc_cur_blink_ms);
  
  	if (fbcon_is_inactive(vc, info) || vc->vc_deccm != 1)
-@@ -2211,6 +2240,9 @@ static int fbcon_switch(struct vc_data *vc)
+@@ -2246,6 +2275,9 @@ static int fbcon_switch(struct vc_data *vc)
  	info = registered_fb[con2fb_map[vc->vc_num]];
  	ops = info->fbcon_par;
  
@@ -1924,7 +1923,7 @@ index bfa1360ec750..4190e0b30cd1 100644
  		if (softback_lines)
  			fbcon_set_origin(vc);
 diff --git a/drivers/video/fbdev/core/fbcon.h b/drivers/video/fbdev/core/fbcon.h
-index 21912a3ba32f..68f31adb0ba4 100644
+index 20dea853765f..e53223ea2ea6 100644
 --- a/drivers/video/fbdev/core/fbcon.h
 +++ b/drivers/video/fbdev/core/fbcon.h
 @@ -215,6 +215,11 @@ static inline int attr_col_ec(int shift, struct vc_data *vc,
@@ -2765,5 +2764,5 @@ index 000000000000..1078f87644b9
 +
 +rm *.rgb
 -- 
-2.20.1
+2.26.0
 
