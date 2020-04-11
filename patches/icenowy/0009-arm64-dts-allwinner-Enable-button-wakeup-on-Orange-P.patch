@@ -1,0 +1,30 @@
+From 84d5a14ee41342128b63ea652dd80edccace4e23 Mon Sep 17 00:00:00 2001
+From: Samuel Holland <samuel@sholland.org>
+Date: Sun, 19 Jan 2020 10:30:56 -0600
+Subject: [PATCH 009/116] arm64: dts: allwinner: Enable button wakeup on Orange
+ Pi PC2
+
+The Orange Pi PC2 features a GPIO button. As the button is connected to
+Port L (pin PL3), it can be used as a wakeup source. Enable this.
+
+Signed-off-by: Samuel Holland <samuel@sholland.org>
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+---
+ arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts
+index 70b5f09984..c4f89c312f 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts
+@@ -61,6 +61,7 @@
+ 			label = "sw4";
+ 			linux,code = <BTN_0>;
+ 			gpios = <&r_pio 0 3 GPIO_ACTIVE_LOW>;
++			wakeup-source;
+ 		};
+ 	};
+ 
+-- 
+2.21.0
+

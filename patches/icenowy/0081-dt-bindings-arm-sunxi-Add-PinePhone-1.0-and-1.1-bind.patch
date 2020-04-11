@@ -1,0 +1,42 @@
+From c103a7623e174a3ba79ea99c0e459c9f4cfdec40 Mon Sep 17 00:00:00 2001
+From: Ondrej Jirman <megous@megous.com>
+Date: Thu, 27 Feb 2020 02:26:49 +0100
+Subject: [PATCH 081/116] dt-bindings: arm: sunxi: Add PinePhone 1.0 and 1.1
+ bindings
+
+Document board compatible names for Pine64 PinePhone:
+
+- 1.0 - Developer variant
+- 1.1 - Braveheart variant
+
+Signed-off-by: Ondrej Jirman <megous@megous.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+---
+ Documentation/devicetree/bindings/arm/sunxi.yaml | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
+index 159060b65c..c632252be4 100644
+--- a/Documentation/devicetree/bindings/arm/sunxi.yaml
++++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+@@ -636,6 +636,16 @@ properties:
+           - const: pine64,pinebook
+           - const: allwinner,sun50i-a64
+ 
++      - description: Pine64 PinePhone Developer Batch (1.0)
++        items:
++          - const: pine64,pinephone-1.0
++          - const: allwinner,sun50i-a64
++
++      - description: Pine64 PinePhone Braveheart (1.1)
++        items:
++          - const: pine64,pinephone-1.1
++          - const: allwinner,sun50i-a64
++
+       - description: Pine64 PineTab
+         items:
+           - const: pine64,pinetab
+-- 
+2.21.0
+

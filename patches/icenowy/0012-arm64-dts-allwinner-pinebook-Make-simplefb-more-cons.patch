@@ -1,0 +1,49 @@
+From b82e20603f75004d41a0bdbcb471584f018efe6d Mon Sep 17 00:00:00 2001
+From: Samuel Holland <samuel@sholland.org>
+Date: Sun, 19 Jan 2020 10:31:00 -0600
+Subject: [PATCH 012/116] arm64: dts: allwinner: pinebook: Make simplefb more
+ consistent
+
+Boards generally reference the simplefb nodes from the SoC dtsi by
+label, not by full path. simplefb_hdmi is already like this in the
+Pinebook DTS. Update simplefb_lcd to match.
+
+Signed-off-by: Samuel Holland <samuel@sholland.org>
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+---
+ .../arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts
+index 77784f7b1d..224bed65d0 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts
+@@ -41,12 +41,6 @@
+ 
+ 	chosen {
+ 		stdout-path = "serial0:115200n8";
+-
+-		framebuffer-lcd {
+-			panel-supply = <&reg_dc1sw>;
+-			dvdd25-supply = <&reg_dldo2>;
+-			dvdd12-supply = <&reg_fldo1>;
+-		};
+ 	};
+ 
+ 	gpio_keys {
+@@ -316,6 +310,12 @@
+ 	regulator-name = "vcc-rtc";
+ };
+ 
++&simplefb_lcd {
++	panel-supply = <&reg_dc1sw>;
++	dvdd25-supply = <&reg_dldo2>;
++	dvdd12-supply = <&reg_fldo1>;
++};
++
+ &simplefb_hdmi {
+ 	vcc-hdmi-supply = <&reg_dldo1>;
+ };
+-- 
+2.21.0
+

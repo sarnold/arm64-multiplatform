@@ -1,0 +1,35 @@
+From e1a5c4f3e80b504517da37188a5f728e51ba814d Mon Sep 17 00:00:00 2001
+From: Icenowy Zheng <icenowy@aosc.io>
+Date: Thu, 16 Jan 2020 11:36:35 +0800
+Subject: [PATCH 007/116] dt-bindings: arm: sunxi: add binding for PineTab
+ tablet
+
+Add the device tree binding for Pine64's PineTab tablet, which uses
+Allwinner A64 SoC.
+
+Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+---
+ Documentation/devicetree/bindings/arm/sunxi.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
+index 327ce67308..159060b65c 100644
+--- a/Documentation/devicetree/bindings/arm/sunxi.yaml
++++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+@@ -636,6 +636,11 @@ properties:
+           - const: pine64,pinebook
+           - const: allwinner,sun50i-a64
+ 
++      - description: Pine64 PineTab
++        items:
++          - const: pine64,pinetab
++          - const: allwinner,sun50i-a64
++
+       - description: Pine64 SoPine Baseboard
+         items:
+           - const: pine64,sopine-baseboard
+-- 
+2.21.0
+

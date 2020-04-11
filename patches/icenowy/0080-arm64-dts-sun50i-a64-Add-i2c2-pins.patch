@@ -1,0 +1,48 @@
+From 46403318cb5b6b198406c0dd99a37062def71f49 Mon Sep 17 00:00:00 2001
+From: Ondrej Jirman <megous@megous.com>
+Date: Thu, 27 Feb 2020 02:26:48 +0100
+Subject: [PATCH 080/116] arm64: dts: sun50i-a64: Add i2c2 pins
+
+PinePhone needs I2C2 pins description. Add it, and make it default
+for i2c2, since it's the only possiblilty.
+
+Signed-off-by: Ondrej Jirman <megous@megous.com>
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+---
+ arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+index 199de9ef6a..496f1ec887 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+@@ -671,6 +671,11 @@
+ 				function = "i2c1";
+ 			};
+ 
++			i2c2_pins: i2c2-pins {
++				pins = "PE14", "PE15";
++				function = "i2c2";
++			};
++
+ 			/omit-if-no-ref/
+ 			lcd_rgb666_pins: lcd-rgb666-pins {
+ 				pins = "PD0", "PD1", "PD2", "PD3", "PD4",
+@@ -958,12 +963,13 @@
+ 			interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&ccu CLK_BUS_I2C2>;
+ 			resets = <&ccu RST_BUS_I2C2>;
++			pinctrl-names = "default";
++			pinctrl-0 = <&i2c2_pins>;
+ 			status = "disabled";
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 		};
+ 
+-
+ 		spi0: spi@1c68000 {
+ 			compatible = "allwinner,sun8i-h3-spi";
+ 			reg = <0x01c68000 0x1000>;
+-- 
+2.21.0
+

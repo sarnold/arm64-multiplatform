@@ -1,0 +1,65 @@
+From 166bdcf3d3e06da5e9bed410a56fc1f5946c378c Mon Sep 17 00:00:00 2001
+From: Andre Przywara <andre.przywara@arm.com>
+Date: Thu, 16 Jan 2020 23:11:47 +0000
+Subject: [PATCH 005/116] arm64: dts: allwinner: h6: Pine H64: Add SPI flash
+ node
+
+The Pine H64 board comes with SPI flash soldered on the board, connected
+to the SPI0 pins (so it can also boot from there).
+
+Add the required SPI flash DT node to describe this.
+
+Unfortunately the SPI CS0 pin collides with the eMMC CMD pin, so we can't
+use both eMMC and SPI flash at the same time (the first to claim the pin
+would win, the other's probe routine would then fail).
+
+To avoid losing the more useful eMMC device by chance, mark the SPI
+device as "disabled" for now. A user or some U-Boot code could fix this
+up if needed, for instance if no eMMC has been detected (it's socketed).
+
+Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+---
+ .../boot/dts/allwinner/sun50i-h6-pine-h64.dts | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
+index d1c2aa5b3a..3c9dd0d697 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
+@@ -14,6 +14,7 @@
+ 	aliases {
+ 		ethernet0 = &emac;
+ 		serial0 = &uart0;
++		spi0 = &spi0;
+ 	};
+ 
+ 	chosen {
+@@ -278,6 +279,24 @@
+ 	vcc-pm-supply = <&reg_aldo1>;
+ };
+ 
++/*
++ * The CS pin is shared with the MMC2 CMD pin, so we cannot have the SPI
++ * flash and eMMC at the same time, as one of them would fail probing.
++ * Disable SPI0 in here, to prefer the more useful eMMC. U-Boot can
++ * fix this up in no eMMC is connected.
++ */
++&spi0 {
++	pinctrl-0 = <&spi0_pins>, <&spi0_cs_pin>;
++	pinctrl-names = "default";
++	status = "disabled";
++
++	flash@0 {
++		compatible = "winbond,w25q128", "jedec,spi-nor";
++		reg = <0>;
++		spi-max-frequency = <4000000>;
++	};
++};
++
+ &uart0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&uart0_ph_pins>;
+-- 
+2.21.0
+

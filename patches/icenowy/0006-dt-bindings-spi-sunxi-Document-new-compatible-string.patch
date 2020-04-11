@@ -1,0 +1,42 @@
+From 57c96ffa8bb01e549000aa2db4951a27e8f61ba4 Mon Sep 17 00:00:00 2001
+From: Andre Przywara <andre.przywara@arm.com>
+Date: Thu, 16 Jan 2020 23:11:48 +0000
+Subject: [PATCH 006/116] dt-bindings: spi: sunxi: Document new compatible
+ strings
+
+The Allwinner H6 SPI controller has advanced features over the H3
+version, but remains compatible with it.
+Document the usual "specific", "fallback" compatible string pair.
+Also add the R40 version while at it.
+
+Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+---
+ .../bindings/spi/allwinner,sun6i-a31-spi.yaml         | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml b/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml
+index 0565dc49e4..243a6b1e66 100644
+--- a/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml
++++ b/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml
+@@ -18,9 +18,14 @@ properties:
+   "#size-cells": true
+ 
+   compatible:
+-    enum:
+-      - allwinner,sun6i-a31-spi
+-      - allwinner,sun8i-h3-spi
++    oneOf:
++      - const: allwinner,sun6i-a31-spi
++      - const: allwinner,sun8i-h3-spi
++      - items:
++        - enum:
++          - allwinner,sun8i-r40-spi
++          - allwinner,sun50i-h6-spi
++        - const: allwinner,sun8i-h3-spi
+ 
+   reg:
+     maxItems: 1
+-- 
+2.21.0
+

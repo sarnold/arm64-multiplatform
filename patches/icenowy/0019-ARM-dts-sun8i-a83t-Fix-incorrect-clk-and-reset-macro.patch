@@ -1,0 +1,44 @@
+From 6912ff91d751762236c1c40508a6509ad36feb03 Mon Sep 17 00:00:00 2001
+From: Chen-Yu Tsai <wens@csie.org>
+Date: Tue, 14 Jan 2020 17:42:52 +0800
+Subject: [PATCH 019/116] ARM: dts: sun8i: a83t: Fix incorrect clk and reset
+ macros for EMAC device
+
+When the raw numbers used for clk and reset indices in the EMAC device
+node were converted to the new macros, the order of the clk and reset
+properties was overlooked, and thus the incorrect macros were used.
+This results in the EMAC being non-responsive, as well as an oops due
+to incorrect usage of the reset control.
+
+Correct the macro types, and also reorder the clk and reset properties
+to match all the other device nodes.
+
+Fixes: 765866edb16a ("ARM: dts: sunxi: Use macros for references to CCU clocks")
+Signed-off-by: Chen-Yu Tsai <wens@csie.org>
+Tested-by: Corentin Labbe <clabbe.montjoie@gmail.com>
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+---
+ arch/arm/boot/dts/sun8i-a83t.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm/boot/dts/sun8i-a83t.dtsi b/arch/arm/boot/dts/sun8i-a83t.dtsi
+index 74ac7ee938..e7b9bef1be 100644
+--- a/arch/arm/boot/dts/sun8i-a83t.dtsi
++++ b/arch/arm/boot/dts/sun8i-a83t.dtsi
+@@ -1006,10 +1006,10 @@
+ 			reg = <0x01c30000 0x104>;
+ 			interrupts = <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "macirq";
+-			resets = <&ccu CLK_BUS_EMAC>;
+-			reset-names = "stmmaceth";
+-			clocks = <&ccu RST_BUS_EMAC>;
++			clocks = <&ccu CLK_BUS_EMAC>;
+ 			clock-names = "stmmaceth";
++			resets = <&ccu RST_BUS_EMAC>;
++			reset-names = "stmmaceth";
+ 			status = "disabled";
+ 
+ 			mdio: mdio {
+-- 
+2.21.0
+
