@@ -208,7 +208,7 @@ bootsplash
 #allwinner
 pinebook
 #chromebook
-icenowy
+#icenowy
 
 packaging () {
 	echo "dir: packaging"
