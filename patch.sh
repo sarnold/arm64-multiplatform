@@ -152,7 +152,7 @@ allwinner () {
 	${git} "${DIR}/patches/allwinner/0022-Bluetooth-hci_h5-Add-support-for-reset-GPIO.patch"
 	${git} "${DIR}/patches/allwinner/0023-dt-bindings-net-bluetooth-Add-rtl8723bs-bluetooth.patch"
 	${git} "${DIR}/patches/allwinner/0024-Bluetooth-hci_h5-Add-support-for-binding-RTL8723BS-w.patch"
-	${git} "${DIR}/patches/allwinner/0025-Bluetooth-btrtl-add-support-for-the-RTL8723CS.patch"
+#	${git} "${DIR}/patches/allwinner/0025-Bluetooth-btrtl-add-support-for-the-RTL8723CS.patch"
 	${git} "${DIR}/patches/allwinner/0026-arm64-allwinner-a64-enable-Bluetooth-On-Pinebook.patch"
 	${git} "${DIR}/patches/allwinner/0027-arm64-allwinner-a64-enable-Bluetooth-On-Pine64.patch"
 	${git} "${DIR}/patches/allwinner/0028-arm64-allwinner-a64-enable-Bluetooth-On-SoPine-baseb.patch"
@@ -189,7 +189,7 @@ chromebook () {
 #rt
 #local_patch
 #toolchain
-bootsplash
+#bootsplash
 #drivers
 rtl8723cs
 #usb_phy
