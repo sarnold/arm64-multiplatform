@@ -1,4 +1,4 @@
-From 5f5d713c983d01b5f8339130537fe474a617cd00 Mon Sep 17 00:00:00 2001
+From 8d9404961543a8abfb0cc14da8e85ca806520453 Mon Sep 17 00:00:00 2001
 From: Vasily Khoruzhick <anarsoul@gmail.com>
 Date: Wed, 31 Oct 2018 20:50:09 -0700
 Subject: [PATCH] arm64: allwinner: a64: enable Bluetooth On SoPine baseboard
@@ -11,17 +11,38 @@ Enable it in the device tree.
 
 Signed-off-by: Vasily Khoruzhick <anarsoul@gmail.com>
 ---
- .../dts/allwinner/sun50i-a64-sopine-baseboard.dts  | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ .../allwinner/sun50i-a64-sopine-baseboard.dts | 35 +++++++++++++++++++
+ 1 file changed, 35 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-baseboard.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-baseboard.dts
-index 920103ec0046..87dd26d7857e 100644
+index 25099202c52c..8a2b5f1dc3a0 100644
 --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-baseboard.dts
 +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-baseboard.dts
-@@ -235,6 +235,20 @@ &uart4 {
- 	status = "disabled";
+@@ -210,6 +210,41 @@
+ 	status = "okay";
  };
  
++/* On Pi-2 connector */
++&uart2 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&uart2_pins>;
++	status = "disabled";
++};
++
++/* On Euler connector */
++&uart3 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&uart3_pins>;
++	status = "disabled";
++};
++
++/* On Euler connector, RTS/CTS optional */
++&uart4 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&uart4_pins>;
++	status = "disabled";
++};
++
 +&uart1 {
 +	pinctrl-names = "default";
 +	pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
@@ -40,5 +61,5 @@ index 920103ec0046..87dd26d7857e 100644
  	dr_mode = "host";
  	status = "okay";
 -- 
-2.26.0
+2.20.1
 

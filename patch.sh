@@ -168,6 +168,11 @@ pinebook () {
 #	${git} "${DIR}/patches/pinebook/0002-arm64-allwinner-a64-enable-ANX6345-bridge-on-Pineboo.patch"
 }
 
+mvebu64 () {
+	echo "dir: mvebu64"
+	${git} "${DIR}/patches/mvebu64/0001-gti-mvebu-espressobin-mainline-patch-rollup.patch"
+}
+
 chromebook () {
 	echo "dir: chromebook"
 	${git} "${DIR}/patches/chromebook/0001-drm-bridge-GPIO-controlled-display-multiplexer-drive.patch"

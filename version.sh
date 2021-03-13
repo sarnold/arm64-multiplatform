@@ -32,9 +32,9 @@ KERNEL_ARCH=arm64
 toolchain="gcc_arm_aarch64_gnu_8"
 
 #Kernel/Build
-KERNEL_REL=5.5
-KERNEL_TAG=${KERNEL_REL}.15
-BUILD=${build_prefix}1
+KERNEL_REL=5.4
+KERNEL_TAG=${KERNEL_REL}.53
+BUILD=${build_prefix}0
 kernel_rt=".X-rtY"
 
 #v4.X-rcX + upto SHA
