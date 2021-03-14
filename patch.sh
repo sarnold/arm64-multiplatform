@@ -201,14 +201,14 @@ icenowy () {
 #rt
 #local_patch
 #toolchain
-bootsplash
+#bootsplash
 #drivers
 #rtl8723cs
 #usb_phy
 #allwinner
-pinebook
+#pinebook
 #chromebook
-icenowy
+#icenowy
 
 packaging () {
 	echo "dir: packaging"
