@@ -194,13 +194,14 @@ chromebook () {
 #rt
 #local_patch
 #toolchain
-#bootsplash
+mvebu64
 #drivers
 rtl8723cs
 #usb_phy
 allwinner
 pinebook
 #chromebook
+#bootsplash
 
 packaging () {
 	echo "dir: packaging"
