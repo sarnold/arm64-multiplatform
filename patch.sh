@@ -133,10 +133,8 @@ drivers () {
 }
 
 rtl8723cs () {
-	echo "dir: drivers/rtl8723cs"
-	${git} "${DIR}/patches/drivers/rtl8723cs/0015-drivers-net-wireless-realtek-add-rtl8723cs-support-f.patch"
-	${git} "${DIR}/patches/drivers/rtl8723cs/0016-drivers-net-wireless-realtek-add-rtl8723cs-support-f.patch"
-	${git} "${DIR}/patches/drivers/rtl8723cs/0030-rtl8723cs-add-use-of-ktime_get_boottime_ts64-for-ker.patch"
+	echo "dir: drivers/rtl8723cs (anarsoul github"
+	${git} "${DIR}/patches/drivers/rtl8723cs/0001-arm64-allwinner-pinebook-add-rtl8723cs-wifi-bt-drive.patch"
 }
 
 usb_phy () {
@@ -163,12 +161,12 @@ allwinner () {
 
 pinebook () {
 	echo "dir: pinebook"
-#	${git} "${DIR}/patches/pinebook/0001-ARCH-arm64-dts-sun50i-a64-enable-pinebook-backlight.patch"
+#	${git} "${DIR}/patches/pinebook/0001-ARCH-arm64-dts-sun50i-a64-pinebook-enable-backlight.patch"
 #	${git} "${DIR}/patches/pinebook/0001-arm64-dts-allwinner-a64-Enable-HDMI-output-on-A64-bo.patch"
 #	${git} "${DIR}/patches/pinebook/0002-arm64-allwinner-a64-enable-ANX6345-bridge-on-Pineboo.patch"
-	${git} "${DIR}/patches/pinebook/0001-add-realtek-8723cs-kconfig-makefile-rebase-on-5.6.3.patch"
-	${git} "${DIR}/patches/pinebook/0002-add-realtek-8723cs-patch-rebased-on-5.6.3.patch"
-	${git} "${DIR}/patches/pinebook/0003-8723bs-AP-bugfix-patch-rebased-on-5.6.3.patch"
+#	${git} "${DIR}/patches/pinebook/0001-add-realtek-8723cs-kconfig-makefile-rebase-on-5.6.3.patch"
+#	${git} "${DIR}/patches/pinebook/0002-add-realtek-8723cs-patch-rebased-on-5.6.3.patch"
+#	${git} "${DIR}/patches/pinebook/0003-8723bs-AP-bugfix-patch-rebased-on-5.6.3.patch"
 	${git} "${DIR}/patches/pinebook/0030-rtl8723cs-add-use-of-ktime_get_boottime_ts64-for-ker.patch"
 }
 
@@ -196,7 +194,7 @@ mvebu64 () {
 }
 
 icenowy () {
-	echo "dir: icenowy (aosc-sunxi64-5.6-rc5 branch)"
+	echo "dir: icenowy (aosc-sunxi64-5.10.22-af8133j branch)"
 	PATCHES=$(find "${DIR}/patches/icenowy/" -name \*.patch | sort)
 	for patch in "$PATCHES"; do
 		${git} $patch
@@ -209,13 +207,13 @@ icenowy () {
 #toolchain
 #bootsplash
 #drivers
-#rtl8723cs
+rtl8723cs
 #usb_phy
 #allwinner
 #pinebook
 #chromebook
 mvebu64
-#icenowy
+icenowy
 
 packaging () {
 	echo "dir: packaging"

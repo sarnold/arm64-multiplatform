@@ -1,0 +1,39 @@
+From d2e7de44b638af32acba6422d0b3157a51f833ab Mon Sep 17 00:00:00 2001
+From: Samuel Holland <samuel@sholland.org>
+Date: Mon, 17 Feb 2020 21:37:13 -0600
+Subject: [PATCH 126/204] arm64: dts: allwinner: a64: Allow using multiple
+ codec DAIs
+
+Increase #sound-dai-cells on the digital codec to allow using the other
+DAIs provided by the codec for AIF2 and AIF3.
+
+Signed-off-by: Samuel Holland <samuel@sholland.org>
+---
+ arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+index a3f99edc732b..41ce444045f3 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+@@ -169,7 +169,7 @@
+ 		};
+ 
+ 		link_codec: simple-audio-card,codec {
+-			sound-dai = <&codec>;
++			sound-dai = <&codec 0>;
+ 		};
+ 	};
+ 
+@@ -898,7 +898,7 @@
+ 		};
+ 
+ 		codec: codec@1c22e00 {
+-			#sound-dai-cells = <0>;
++			#sound-dai-cells = <1>;
+ 			compatible = "allwinner,sun50i-a64-codec",
+ 				     "allwinner,sun8i-a33-codec";
+ 			reg = <0x01c22e00 0x600>;
+-- 
+2.20.1
+

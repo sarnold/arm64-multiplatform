@@ -1,0 +1,54 @@
+From fbe2190e7301c2a5f47dfbf1a4a397e32fb27056 Mon Sep 17 00:00:00 2001
+From: Icenowy Zheng <icenowy@aosc.io>
+Date: Tue, 7 Jul 2020 22:15:53 +0800
+Subject: [PATCH 071/204] arm64: dts: allwinner: a64: enable HDMI connector on
+ PineTab
+
+Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
+---
+ .../boot/dts/allwinner/sun50i-a64-pinetab.dts | 22 +++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab.dts
+index 7b589d502bf5..d31231cbc7d4 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab.dts
+@@ -35,6 +35,17 @@
+ 		stdout-path = "serial0:115200n8";
+ 	};
+ 
++	hdmi-connector {
++		compatible = "hdmi-connector";
++		type = "c";
++
++		port {
++			hdmi_con_in: endpoint {
++				remote-endpoint = <&hdmi_out_con>;
++			};
++		};
++	};
++
+ 	i2c-csi {
+ 		compatible = "i2c-gpio";
+ 		sda-gpios = <&pio 4 13 GPIO_ACTIVE_HIGH>; /* PE13 */
+@@ -168,6 +179,17 @@
+ 	status = "okay";
+ };
+ 
++&hdmi {
++	hvcc-supply = <&reg_dldo1>;
++	status = "okay";
++};
++
++&hdmi_out {
++	hdmi_out_con: endpoint {
++		remote-endpoint = <&hdmi_con_in>;
++	};
++};
++
+ &i2c0 {
+ 	status = "okay";
+ 
+-- 
+2.20.1
+
