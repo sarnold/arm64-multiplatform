@@ -1,0 +1,26 @@
+From 0a189ab03fdd575b36562cc8b517e58d348320c3 Mon Sep 17 00:00:00 2001
+From: Steve Arnold <nerdboy@gentoo.org>
+Date: Mon, 12 Apr 2021 22:25:58 -0700
+Subject: [PATCH] net: phy: marvell: workaround for mdio temp mis-detection
+
+Signed-off-by: Steve Arnold <nerdboy@gentoo.org>
+---
+ drivers/net/phy/marvell.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/net/phy/marvell.c b/drivers/net/phy/marvell.c
+index 5aec673a0120..6adb2bf81068 100644
+--- a/drivers/net/phy/marvell.c
++++ b/drivers/net/phy/marvell.c
+@@ -2917,7 +2917,7 @@ static struct phy_driver marvell_drivers[] = {
+ 		.name = "Marvell 88E6390",
+ 		/* PHY_GBIT_FEATURES */
+ 		.flags = PHY_POLL_CABLE_TEST,
+-		.probe = m88e6390_probe,
++		.probe = m88e1510_probe,
+ 		.config_init = marvell_config_init,
+ 		.config_aneg = m88e6390_config_aneg,
+ 		.read_status = marvell_read_status,
+-- 
+2.20.1
+

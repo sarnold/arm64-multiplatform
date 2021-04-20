@@ -189,6 +189,12 @@ chromebook () {
 	${git} "${DIR}/patches/chromebook/0001-drm-mediatek-cleanup-mtk_drm_fbdev-based-on-patchwor.patch"
 }
 
+mvebu64 () {
+	echo "dir: mvebu64"
+	${git} "${DIR}/patches/mvebu64/0001-arm64-dts-marvell-add-DT-for-ESPRESSObin-Ultra.patch"
+	${git} "${DIR}/patches/mvebu64/0001-net-phy-marvell-workaround-for-mdio-temp-mis-detect.patch"
+}
+
 icenowy () {
 	echo "dir: icenowy (aosc-sunxi64-5.6-rc5 branch)"
 	PATCHES=$(find "${DIR}/patches/icenowy/" -name \*.patch | sort)
@@ -208,6 +214,7 @@ icenowy () {
 #allwinner
 #pinebook
 #chromebook
+mvebu64
 #icenowy
 
 packaging () {
