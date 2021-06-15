@@ -105,29 +105,21 @@ local_patch () {
 
 drivers () {
 	echo "dir: drivers/rtl8723cs (anarsoul github)"
+	# fails to build on 5.12.10
 	${git} "${DIR}/patches/drivers/rtl8723cs/0001-arm64-allwinner-pinebook-add-rtl8723cs-wifi-bt-drive.patch"
 }
 
 mvebu64 () {
 	echo "dir: mvebu64"
 	${git} "${DIR}/patches/mvebu64/0001-arm64-dts-marvell-add-DT-for-ESPRESSObin-Ultra.patch"
-	${git} "${DIR}/patches/mvebu64/0001-net-phy-marvell-workaround-for-mdio-temp-mis-detect.patch"
-}
-
-icenowy () {
-	echo "dir: icenowy (aosc-sunxi64-5.10.22-af8133j branch)"
-	PATCHES=$(find "${DIR}/patches/icenowy/" -name \*.patch | sort)
-	for patch in "$PATCHES"; do
-		${git} $patch
-	done
+	#${git} "${DIR}/patches/mvebu64/0001-net-phy-marvell-workaround-for-mdio-temp-mis-detect.patch"
 }
 
 #external_git
 #rt
 #local_patch
-drivers
+#drivers
 mvebu64
-icenowy
 
 packaging () {
 	echo "dir: packaging"
