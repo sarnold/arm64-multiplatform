@@ -103,88 +103,9 @@ local_patch () {
 	${git} "${DIR}/patches/dir/0001-patch.patch"
 }
 
-toolchain () {
-	echo "dir: toolchain"
-	${git} "${DIR}/patches/toolchain/0001-arch-arm64-kernel-vdso-Makefile-fix-gold-linker-fail.patch"
-}
-
-bootsplash () {
-        echo "dir: bootsplash"
-	${git} "${DIR}/patches/bootsplash/0001-linux-stable-Add-kernel-bootsplash-patches.patch"
-	${git} "${DIR}/patches/bootsplash/0002-bootsplash-add-gentoo-logo-build-script.patch"
-	${git} "${DIR}/patches/bootsplash/0003-tools-bootsplash-Makefile-fix-include-paths.patch"
-}
-
 drivers () {
-	echo "dir: drivers/sun8i-ce"
-	${git} "${DIR}/patches/drivers/sun8i-ce/0001-crypto-Add-allwinner-subdirectory.patch"
-	${git} "${DIR}/patches/drivers/sun8i-ce/0002-crypto-Add-Allwinner-sun8i-ce-Crypto-Engine.patch"
-	${git} "${DIR}/patches/drivers/sun8i-ce/0003-dt-bindings-crypto-Add-DT-bindings-documentation-for.patch"
-	${git} "${DIR}/patches/drivers/sun8i-ce/0004-ARM-dts-sun8i-r40-add-crypto-engine-node.patch"
-	${git} "${DIR}/patches/drivers/sun8i-ce/0005-ARM-dts-sun8i-h3-Add-Crypto-Engine-node.patch"
-	${git} "${DIR}/patches/drivers/sun8i-ce/0006-ARM64-dts-allwinner-sun50i-Add-Crypto-Engine-node-on.patch"
-	${git} "${DIR}/patches/drivers/sun8i-ce/0007-ARM64-dts-allwinner-sun50i-Add-crypto-engine-node-on.patch"
-	${git} "${DIR}/patches/drivers/sun8i-ce/0008-ARM64-dts-allwinner-sun50i-Add-Crypto-Engine-node-on.patch"
-	${git} "${DIR}/patches/drivers/sun8i-ce/0009-sunxi_defconfig-add-new-crypto-options.patch"
-	${git} "${DIR}/patches/drivers/sun8i-ce/0010-crypto-Add-Allwinner-sun8i-ss-cryptographic-offloade.patch"
-	${git} "${DIR}/patches/drivers/sun8i-ce/0011-dt-bindings-crypto-Add-DT-bindings-documentation-for.patch"
-	${git} "${DIR}/patches/drivers/sun8i-ce/0012-ARM-dts-sun8i-a83t-Add-Security-System-node.patch"
-	${git} "${DIR}/patches/drivers/sun8i-ce/0013-ARM-dts-sun9i-a80-Add-Security-System-node.patch"
-}
-
-rtl8723cs () {
-	echo "dir: drivers/rtl8723cs (anarsoul github"
+	echo "dir: drivers/rtl8723cs (anarsoul github)"
 	${git} "${DIR}/patches/drivers/rtl8723cs/0001-arm64-allwinner-pinebook-add-rtl8723cs-wifi-bt-drive.patch"
-}
-
-usb_phy () {
-	echo "dir: usb_phy"
-	${git} "${DIR}/patches/meson64/0001-ARM64-dts-meson-gxbb-odroidc2-Fix-usb-phy-reset-warning.patch"
-	${git} "${DIR}/patches/meson64/0002-ARM64-dts-meson-gxbb-odroidc2-Fix-usb-phy-regulator-power-failed-warning.patch"
-}
-
-allwinner () {
-	echo "dir: allwinner"
-	${git} "${DIR}/patches/allwinner/0020-hdmi-audio-fixup.patch"
-	${git} "${DIR}/patches/allwinner/0021-Bluetooth-Add-new-quirk-for-broken-local-ext-feature.patch"
-	${git} "${DIR}/patches/allwinner/0022-Bluetooth-hci_h5-Add-support-for-reset-GPIO.patch"
-	${git} "${DIR}/patches/allwinner/0023-dt-bindings-net-bluetooth-Add-rtl8723bs-bluetooth.patch"
-	${git} "${DIR}/patches/allwinner/0024-Bluetooth-hci_h5-Add-support-for-binding-RTL8723BS-w.patch"
-	${git} "${DIR}/patches/allwinner/0025-Bluetooth-btrtl-add-support-for-the-RTL8723CS.patch"
-	${git} "${DIR}/patches/allwinner/0026-arm64-allwinner-a64-enable-Bluetooth-On-Pinebook.patch"
-	${git} "${DIR}/patches/allwinner/0027-arm64-allwinner-a64-enable-Bluetooth-On-Pine64.patch"
-	${git} "${DIR}/patches/allwinner/0028-arm64-allwinner-a64-enable-Bluetooth-On-SoPine-baseb.patch"
-	${git} "${DIR}/patches/allwinner/0029-si2168-fix-cmd-timeout.patch"
-	${git} "${DIR}/patches/allwinner/0031-dts-a64-ths.patch"
-#	${git} "${DIR}/patches/allwinner/0032-a64-dvfs-wip.patch"
-}
-
-pinebook () {
-	echo "dir: pinebook"
-#	${git} "${DIR}/patches/pinebook/0001-ARCH-arm64-dts-sun50i-a64-pinebook-enable-backlight.patch"
-#	${git} "${DIR}/patches/pinebook/0001-arm64-dts-allwinner-a64-Enable-HDMI-output-on-A64-bo.patch"
-#	${git} "${DIR}/patches/pinebook/0002-arm64-allwinner-a64-enable-ANX6345-bridge-on-Pineboo.patch"
-#	${git} "${DIR}/patches/pinebook/0001-add-realtek-8723cs-kconfig-makefile-rebase-on-5.6.3.patch"
-#	${git} "${DIR}/patches/pinebook/0002-add-realtek-8723cs-patch-rebased-on-5.6.3.patch"
-#	${git} "${DIR}/patches/pinebook/0003-8723bs-AP-bugfix-patch-rebased-on-5.6.3.patch"
-	${git} "${DIR}/patches/pinebook/0030-rtl8723cs-add-use-of-ktime_get_boottime_ts64-for-ker.patch"
-}
-
-chromebook () {
-	echo "dir: chromebook"
-	${git} "${DIR}/patches/chromebook/0001-drm-bridge-GPIO-controlled-display-multiplexer-drive.patch"
-#	${git} "${DIR}/patches/chromebook/RFC-v2-1-8-drm-bridge-GPIO-controlled-display-multiplexer-driver.patch"
-	${git} "${DIR}/patches/chromebook/RFC-v2-2-8-platform-chrome-ChromeOS-firmware-interface-driver.patch"
-	${git} "${DIR}/patches/chromebook/0001-drm-bridge-Parade-PS8640-MIPI-DSI-eDP-converter-driv.patch"
-#	${git} "${DIR}/patches/chromebook/RFC-v2-3-8-drm-bridge-Parade-PS8640-MIPI-DSI---eDP-converter-driver.patch"
-	${git} "${DIR}/patches/chromebook/RFC-v2-4-8-drm-bridge-Analogix-ANX7688-HDMI---DP-bridge-driver.patch"
-	${git} "${DIR}/patches/chromebook/0001-arm64-dts-mediatek-Add-Elm-Rev.-3-device-tree.patch"
-#	${git} "${DIR}/patches/chromebook/RFC-v2-5-8-arm64-dts-mediatek-Add-Elm-Rev.-3-device-tree.patch"
-	${git} "${DIR}/patches/chromebook/RFC-v2-6-8-hack-mediatek-get-mmsys-to-register-as-both-DRM-and-clock-device.patch"
-	${git} "${DIR}/patches/chromebook/0001-RFC-v2-7-8-drm-mediatek-Add-DRM-based-framebuffer-de.patch"
-#	${git} "${DIR}/patches/chromebook/RFC-v2-7-8-drm-mediatek-Add-DRM-based-framebuffer-device.patch"
-	${git} "${DIR}/patches/chromebook/RFC-v2-8-8-drm-mediatek-Fix-drm_of_find_panel_or_bridge-conversion.patch"
-	${git} "${DIR}/patches/chromebook/0001-drm-mediatek-cleanup-mtk_drm_fbdev-based-on-patchwor.patch"
 }
 
 mvebu64 () {
@@ -204,14 +125,7 @@ icenowy () {
 #external_git
 #rt
 #local_patch
-#toolchain
-#bootsplash
-#drivers
-rtl8723cs
-#usb_phy
-#allwinner
-#pinebook
-#chromebook
+drivers
 mvebu64
 icenowy
 
